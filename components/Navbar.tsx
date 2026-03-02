@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Instagram } from "lucide-react";
 import { navLinks, siteConfig, contactInfo } from "@/data/mockData";
 
 export default function Navbar() {
@@ -93,6 +93,18 @@ export default function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
+              <motion.a
+                href={contactInfo.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-9 h-9 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-primary-orange dark:hover:bg-primary-orange flex items-center justify-center transition-colors duration-300 text-secondary-blue dark:text-white hover:text-white"
+              >
+                <Instagram className="w-4 h-4" />
+              </motion.a>
+
               <motion.a
                 href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
                 className="flex items-center gap-2 text-secondary-blue dark:text-white hover:text-primary-orange dark:hover:text-primary-orange transition-colors duration-300"
@@ -199,6 +211,15 @@ export default function Navbar() {
                   >
                     <Phone className="w-5 h-5" />
                     <span className="font-semibold">{contactInfo.phone}</span>
+                  </a>
+                  <a
+                    href={contactInfo.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-secondary-blue-muted dark:text-gray-300 hover:text-primary-orange dark:hover:text-primary-orange transition-colors duration-300"
+                  >
+                    <Instagram className="w-5 h-5" />
+                    <span className="font-semibold">@fizikend</span>
                   </a>
                 </div>
 

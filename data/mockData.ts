@@ -52,6 +52,8 @@ export interface ContactInfo {
   phone: string;
   whatsapp: string;
   email: string;
+  email2: string;
+  instagram: string;
   address: string;
   city: string;
   workingHours: string;
@@ -63,14 +65,14 @@ export interface ContactInfo {
 export const siteConfig = {
   name: "FizikEND",
   tagline: "Fizyoterapi ve Danışmanlık Merkezi",
-  description: "Antalya Lara'da IKOMT, Schroth Method Skolyoz Rehabilitasyonu ve kaliteli fizyoterapi hizmeti. Bilimsel temelli, modern ve efektif tedavi yaklaşımı.",
+  description: "Antalya Muratpaşa'da IKOMT, Schroth Method Skolyoz Rehabilitasyonu ve kaliteli fizyoterapi hizmeti. Bilimsel temelli, modern ve efektif tedavi yaklaşımı.",
 };
 
 // Navigation
 export const navLinks: NavLink[] = [
   { label: "Anasayfa", href: "#hero" },
   { label: "Hizmetler", href: "#services" },
-  { label: "Ağrı Haritası", href: "#pain-map" },
+  { label: "Hakkımızda", href: "#about" },
   { label: "Sertifikalar", href: "#certifications" },
   { label: "İletişim", href: "#contact" },
 ];
@@ -365,48 +367,153 @@ export const painPoints: PainPoint[] = [
 // Sertifikalar ve Uzmanlık Alanları (Hasta yorumları yerine)
 export const certifications: Certification[] = [
   {
-    id: "ikomt-cert",
-    title: "IKOMT Sertifikası",
+    id: "ikomt-advanced-cert",
+    title: "IKOMT Advanced Practitioner",
     organization: "Uluslararası IKOMT Akademisi",
-    description: "Klinik Odaklı Multiboyutlu Ağrı Terapisi alanında uluslararası geçerliliği olan sertifika.",
+    description: "Klinik Odaklı Multiboyutlu Ağrı Terapisi'nin en üst düzey uygulayıcı sertifikası. 1. Kur: NMST Practitioner (2022) · 2. Kur: Advanced Practitioner (2025).",
     icon: "Award",
   },
   {
     id: "schroth-cert",
-    title: "ISST Schroth Method",
-    organization: "International Schroth Society",
-    description: "Skolyoz ve kifoz rehabilitasyonunda dünyada en çok kabul gören 3 boyutlu spesifik düzeltici egzersiz metodu.",
+    title: "ISST Schroth Therapist",
+    organization: "International Schroth Society (ISST)",
+    description: "Skolyoz ve kifoz rehabilitasyonunda dünyada en çok kabul gören 3 boyutlu spesifik düzeltici egzersiz metodunda uluslararası terapist sertifikası.",
     icon: "Award",
   },
   {
     id: "manuel-cert",
     title: "Manuel Terapi Uzmanlığı",
     organization: "Fizyoterapi Derneği",
-    description: "Eklem mobilizasyonu ve manipülasyon tekniklerinde uzmanlaşma.",
+    description: "Eklem mobilizasyonu ve manipülasyon tekniklerinde kapsamlı klinik eğitim ve uzmanlaşma.",
     icon: "Award",
   },
 ];
 
-// Team Members - Gerçek bilgiler güncellenmeli
+export interface TherapyStep {
+  step: number;
+  icon: string;
+  title: string;
+  description: string;
+  details: string[];
+}
+
+export interface AboutSection {
+  title: string;
+  subtitle: string;
+  clinicDescription: string;
+  foundedYear: string;
+}
+
+export interface CareerStep {
+  year: string;
+  title: string;
+  description: string;
+}
+
+// Team Members
 export const teamMembers: TeamMember[] = [
   {
     id: "1",
     name: "Fzt. Kadir Temel",
     title: "Kurucu Fizyoterapist",
-    specialization: "IKOMT, Skolyoz Rehabilitasyonu",
+    specialization: "IKOMT Advanced Practitioner · ISST Schroth Therapist",
     image: "https://i.pravatar.cc/300?img=14", // Gerçek fotoğraf ile değiştirilmeli
-    bio: "IKOMT ve Schroth Method sertifikalı uzman fizyoterapist",
+    bio: "Süleyman Demirel Üniversitesi Fizik Tedavi ve Rehabilitasyon Bölümü'nden 2014 yılında mezun olmuştur. Üniversite eğitimi sırasında Erasmus+ öğrenci değişim programıyla gittiği Polonya'nın Opole Politechnika Opolska Üniversitesi'nde farklı bir mesleki bakış açısı kazanmıştır. Ortopedik, nörolojik, spor yaralanmaları ve pediatrik yaklaşımlarla ilgili Türkiye'nin önde gelen birçok kurumunda staj yaparak kendini geliştirmiştir. 2023 yılında kurduğu FizikEND bünyesinde bilimsel temelli fizyoterapi hizmeti sunmaya devam etmektedir.",
   },
 ];
+
+// Kariyer Zaman Çizelgesi
+export const careerSteps: CareerStep[] = [
+  {
+    year: "2014",
+    title: "Mezuniyet & Erasmus+",
+    description: "Süleyman Demirel Üniversitesi Fizik Tedavi ve Rehabilitasyon Bölümü mezuniyeti. Erasmus+ programıyla Polonya Opole Politechnika Opolska Üniversitesi'nde eğitim.",
+  },
+  {
+    year: "2014–2018",
+    title: "Ortopedik & Pediatrik Rehabilitasyon",
+    description: "Özel bir tıp merkezinde ortopedik, pediatrik ve nörolojik rehabilitasyon alanında klinik deneyim.",
+  },
+  {
+    year: "2018–2022",
+    title: "Skolyoz & Modern Ağrı Yönetimi",
+    description: "Özel klinik bünyesinde skolyoz rehabilitasyonu ve modern ağrı yönetimi alanında uzmanlaşma.",
+  },
+  {
+    year: "2022",
+    title: "IKOMT NMST Practitioner · ISST Schroth Therapist",
+    description: "IKOMT Klinik Odaklı Multiboyutlu Ağrı Terapisi 1. kur (NMST) eğitimini ve ISST Schroth Method eğitimini başarıyla tamamladı.",
+  },
+  {
+    year: "2023",
+    title: "FizikEND'in Kuruluşu",
+    description: "Antalya Muratpaşa'da FizikEND Fizyoterapi ve Danışmanlık Merkezi'ni kurdu.",
+  },
+  {
+    year: "2025",
+    title: "IKOMT Advanced Practitioner",
+    description: "IKOMT 2. kur Advanced eğitimini tamamlayarak 'IKOMT Advanced Practitioner' unvanını aldı.",
+  },
+];
+
+// Terapi Süreci
+export const therapySteps: TherapyStep[] = [
+  {
+    step: 1,
+    icon: "ClipboardList",
+    title: "İlk Tetkik ve Değerlendirme",
+    description: "Sizi tanımak ve probleminizi anlamak için kapsamlı bir değerlendirme yapılır.",
+    details: [
+      "Detaylı anamnez ve şikayet analizi",
+      "Postür ve hareket değerlendirmesi",
+      "Fonksiyonel testler",
+      "Kişiye özel tedavi planı oluşturma",
+    ],
+  },
+  {
+    step: 2,
+    icon: "HandMetal",
+    title: "Manuel Terapi",
+    description: "Uzman eller ile eklem ve kas dokusuna yönelik özel teknikler uygulanır.",
+    details: [
+      "Eklem mobilizasyonu ve manipülasyonu",
+      "Yumuşak doku teknikleri",
+      "IKOMT ağrı terapi yöntemleri",
+      "Skolyoz için Schroth egzersizleri",
+    ],
+  },
+  {
+    step: 3,
+    icon: "Zap",
+    title: "Fizik Tedavi & Egzersiz",
+    description: "Kişiye özel egzersiz programları ve gerektiğinde fizik tedavi modaliteleri uygulanır.",
+    details: [
+      "Kişiye özel terapötik egzersiz programı",
+      "Klinik Pilates & Reformer",
+      "Kinezyolojik bantlama",
+      "Ev egzersiz programı ve eğitimi",
+    ],
+  },
+];
+
+// Hakkımızda Bölümü
+export const aboutSection: AboutSection = {
+  title: "Bizi Tanıyın",
+  subtitle: "Bilimsel temelli fizyoterapi anlayışıyla danışanlarımıza bütüncül bir iyilik hali sunuyoruz.",
+  clinicDescription: "Antalya Muratpaşa'da Nisan 2023'te kurulan FizikEND, kaliteli fizyoterapi hizmeti sunmayı hedeflemektedir. Alanında uzman fizyoterapistlerin klinik deneyimleri bilime dayalı fizyoterapi yöntemleriyle harmanlanır.",
+  foundedYear: "2023",
+};
 
 // Contact Information - GERÇEK BİLGİLER
 export const contactInfo: ContactInfo = {
   phone: "+90 542 147 66 70",
   whatsapp: "+905421476670",
   email: "fizikend@gmail.com",
+  email2: "abdulkadirtemel@gmail.com",
+  instagram: "https://www.instagram.com/fizikend/",
   address: "Şirinyalı Mahallesi 1487. Sk. No:23/A",
   city: "Muratpaşa/ANTALYA",
-  workingHours: "Pzt-Cum: 09:00 - 19:00 | Cmt: 09:00 - 14:00",
+  workingHours: "Pzt-Cum: 09:00 - 20:00 | Cmt: 09:00 - 17:00",
   googleMapsUrl: "https://maps.app.goo.gl/cyPYoaevdTZTViMh6",
   googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.0295544635032!2d30.7383692!3d36.865711399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c39bf7164993fb%3A0x571c0053caf07068!2sFizyoterapist%20Kadir%20Temel%20%7C%20FizikEND%20Klinik!5e0!3m2!1str!2str!4v1770559222251!5m2!1str!2str",
 };
@@ -416,7 +523,7 @@ export const statistics = [
   { value: "10+", label: "Uzmanlık Alanı" },
   { value: "IKOMT", label: "Sertifikalı Merkez" },
   { value: "Schroth", label: "Method Uygulayıcısı" },
-  { value: "Lara", label: "Antalya" },
+  { value: "Muratpaşa", label: "Antalya" },
 ];
 
 // FAQ Data

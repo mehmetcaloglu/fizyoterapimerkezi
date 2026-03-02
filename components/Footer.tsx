@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Instagram, MessageCircle } from "lucide-react";
 import { contactInfo, siteConfig, navLinks } from "@/data/mockData";
 
 export default function Footer() {
@@ -63,15 +63,15 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex gap-3">
               {[
-                { icon: Facebook, href: "#" },
-                { icon: Instagram, href: "https://instagram.com/fizikend" },
-                { icon: MessageCircle, href: `https://wa.me/${contactInfo.whatsapp || contactInfo.phone.replace(/\s/g, "").replace("+", "")}` },
+                { icon: Instagram, href: contactInfo.instagram, label: "Instagram" },
+                { icon: MessageCircle, href: `https://wa.me/${contactInfo.whatsapp}`, label: "WhatsApp" },
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-primary-orange flex items-center justify-center transition-colors duration-300"
@@ -138,6 +138,15 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href={`mailto:${contactInfo.email2}`}
+                  className="flex items-start gap-3 text-gray-300 hover:text-primary-orange transition-colors duration-300 group"
+                >
+                  <Mail className="w-5 h-5 flex-shrink-0 mt-0.5 group-hover:animate-pulse" />
+                  <span>{contactInfo.email2}</span>
+                </a>
+              </li>
+              <li>
+                <a
                   href={contactInfo.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -166,9 +175,9 @@ export default function Footer() {
               <Clock className="w-5 h-5 flex-shrink-0 mt-0.5 text-primary-orange" />
               <div>
                 <p className="mb-1">Pazartesi - Cuma</p>
-                <p className="text-white font-semibold">09:00 - 19:00</p>
+                <p className="text-white font-semibold">09:00 - 20:00</p>
                 <p className="mt-3 mb-1">Cumartesi</p>
-                <p className="text-white font-semibold">09:00 - 14:00</p>
+                <p className="text-white font-semibold">09:00 - 17:00</p>
                 <p className="mt-3 text-gray-400">Pazar Kapalı</p>
               </div>
             </div>
@@ -225,14 +234,8 @@ export default function Footer() {
               © {new Date().getFullYear()} {siteConfig.name}. Tüm hakları saklıdır.
             </p>
             <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-primary-orange transition-colors duration-300">
-                Gizlilik Politikası
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary-orange transition-colors duration-300">
-                Kullanım Koşulları
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary-orange transition-colors duration-300">
-                KVKK
+              <a href="/kvkk" className="text-gray-400 hover:text-primary-orange transition-colors duration-300">
+                KVKK Aydınlatma Metni
               </a>
             </div>
           </div>
