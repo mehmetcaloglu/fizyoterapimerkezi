@@ -2,22 +2,25 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, MessageCircle, Instagram } from "lucide-react";
-import { navLinks, siteConfig, contactInfo } from "@/data/mockData";
+import { siteConfig, contactInfo } from "@/data/mockData";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+const navHrefs = ["#hero", "#services", "#about", "#certifications", "#contact"];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
+  const { t } = useLanguage();
+
+  const navLabels = [t.nav.home, t.nav.services, t.nav.about, t.nav.certifications, t.nav.contact];
+  const navLinks = navHrefs.map((href, i) => ({ href, label: navLabels[i] }));
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -27,11 +30,8 @@ export default function Navbar() {
       e.preventDefault();
       setIsMobileMenuOpen(false);
       const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      if (element) element.scrollIntoView({ behavior: "smooth" });
     }
-    // If we're on a subpage, let the link follow its natural href (e.g., /#services)
   };
 
   return (
@@ -39,45 +39,26 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-white/80 dark:bg-secondary-blue/80 backdrop-blur-xl shadow-lg"
-          : "bg-transparent"
-          }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? "bg-white/80 dark:bg-secondary-blue/80 backdrop-blur-xl shadow-lg" : "bg-transparent"
+        }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link
-              href="/#hero"
-              onClick={(e) => handleLinkClick(e, "#hero")}
-              className="flex items-center gap-3 group"
-            >
-              <div className="relative">
-                <div className="absolute inset-0 bg-primary-orange rounded-lg blur-lg opacity-50 group-hover:opacity-75 transition-opacity" />
-                <div className="relative bg-primary-orange p-2 rounded-lg">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-                  </svg>
-                </div>
-              </div>
-              <div>
-                <div className="font-display text-2xl font-bold text-secondary-blue dark:text-white">
-                  {siteConfig.name}
-                </div>
-                <div className="text-xs text-primary-orange font-semibold tracking-wider">
-                  {siteConfig.tagline}
-                </div>
-              </div>
+            <Link href="/#hero" onClick={(e) => handleLinkClick(e, "#hero")} className="flex items-center gap-2 group">
+              <img
+                src="/logo-icon.svg"
+                alt=""
+                className="h-11 w-auto transition-opacity duration-300 group-hover:opacity-80"
+              />
+              <span className="text-2xl font-black tracking-tight leading-none">
+                <span className="text-primary-orange">Fizik</span>
+                <span className="text-secondary-blue dark:text-white">END</span>
+              </span>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
                 <Link
@@ -91,8 +72,8 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden lg:flex items-center gap-4">
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-3">
               <motion.a
                 href={contactInfo.instagram}
                 target="_blank"
@@ -107,12 +88,12 @@ export default function Navbar() {
 
               <motion.a
                 href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
-                className="flex items-center gap-2 text-secondary-blue dark:text-white hover:text-primary-orange dark:hover:text-primary-orange transition-colors duration-300"
+                className="hidden xl:flex items-center gap-2 text-secondary-blue dark:text-white hover:text-primary-orange dark:hover:text-primary-orange transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Phone className="w-5 h-5" />
-                <span className="font-semibold">{contactInfo.phone}</span>
+                <Phone className="w-4 h-4" />
+                <span className="font-semibold text-sm">{contactInfo.phone}</span>
               </motion.a>
 
               <motion.a
@@ -121,14 +102,14 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary-orange hover:bg-primary-orange-hover text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+                className="bg-primary-orange hover:bg-primary-orange-hover text-white font-semibold px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
               >
-                <MessageCircle className="w-5 h-5" />
-                Randevu Al
+                <MessageCircle className="w-4 h-4" />
+                {t.nav.appointment}
               </motion.a>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 rounded-lg bg-white/10 dark:bg-white/5 backdrop-blur-sm"
@@ -147,7 +128,6 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -155,8 +135,6 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
             />
-
-            {/* Menu Panel */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -165,7 +143,6 @@ export default function Navbar() {
               className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white dark:bg-secondary-blue shadow-2xl z-50 lg:hidden"
             >
               <div className="p-8">
-                {/* Close Button */}
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="absolute top-6 right-6 p-2 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors duration-300"
@@ -173,17 +150,17 @@ export default function Navbar() {
                   <X className="w-6 h-6 text-secondary-blue dark:text-white" />
                 </button>
 
-                {/* Logo */}
-                <div className="mb-12">
-                  <div className="font-display text-3xl font-bold text-secondary-blue dark:text-white mb-1">
-                    {siteConfig.name}
+                <div className="mb-8">
+                  <div className="flex items-center gap-2 mb-2">
+                    <img src="/logo-icon.svg" alt="" className="h-12 w-auto" />
+                    <span className="text-3xl font-black tracking-tight leading-none">
+                      <span className="text-primary-orange">Fizik</span>
+                      <span className="text-secondary-blue dark:text-white">END</span>
+                    </span>
                   </div>
-                  <div className="text-sm text-primary-orange font-semibold">
-                    {siteConfig.tagline}
-                  </div>
+                  <div className="text-sm text-primary-orange font-semibold">{t.hero.tagline}</div>
                 </div>
 
-                {/* Navigation Links */}
                 <div className="space-y-6 mb-12">
                   {navLinks.map((link, index) => (
                     <motion.div
@@ -203,7 +180,6 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                {/* Contact Info */}
                 <div className="space-y-4 mb-8">
                   <a
                     href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
@@ -223,7 +199,6 @@ export default function Navbar() {
                   </a>
                 </div>
 
-                {/* CTA Button */}
                 <a
                   href={`https://wa.me/${contactInfo.whatsapp}`}
                   target="_blank"
@@ -231,7 +206,7 @@ export default function Navbar() {
                   className="w-full bg-primary-orange hover:bg-primary-orange-hover text-white font-semibold py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <MessageCircle className="w-5 h-5" />
-                  WhatsApp ile Randevu Al
+                  {t.nav.appointment}
                 </a>
               </div>
             </motion.div>

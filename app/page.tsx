@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Hand,
   Dumbbell,
@@ -18,23 +18,36 @@ import {
   ClipboardList,
   HandMetal,
   ChevronDown,
+  X,
+  ZoomIn,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import DarkModeToggle from "@/components/DarkModeToggle";
+import FloatingControls from "@/components/FloatingControls";
 import Image from "next/image";
 import {
-  heroContent,
-  services,
-  certifications,
-  statistics,
+  services as servicesTR,
+  certifications as certificationsTR,
+  statistics as statisticsTR,
   siteConfig,
   contactInfo,
   teamMembers,
-  careerSteps,
-  aboutSection,
-  therapySteps,
+  careerSteps as careerStepsTR,
+  aboutSection as aboutSectionTR,
+  therapySteps as therapyStepsTR,
+  galleryImages,
+  gallerySectionData,
 } from "@/data/mockData";
+import {
+  servicesEn,
+  certificationsEn,
+  statisticsEn,
+  teamMemberEn,
+  aboutSectionEn,
+  careerStepsEn,
+  therapyStepsEn,
+} from "@/lib/i18n/content-en";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Icon mapping
 const iconMap: Record<string, any> = {
@@ -49,12 +62,155 @@ const iconMap: Record<string, any> = {
   HandMetal,
 };
 
+function GallerySection({ locale }: { locale: string }) {
+  const [activeCategory, setActiveCategory] = useState<string>("tumu");
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
+  const isEn = locale === "en";
+  const title = isEn ? gallerySectionData.title_en : gallerySectionData.title;
+  const subtitle = isEn ? gallerySectionData.subtitle_en : gallerySectionData.subtitle;
+
+  const filtered = activeCategory === "tumu"
+    ? galleryImages
+    : galleryImages.filter((img) =>
+        isEn ? img.category_en === activeCategory : img.category === activeCategory
+      );
+
+  const activeLightboxImg = galleryImages.find((img) => img.id === lightbox);
+
+  return (
+    <section id="galeri" className="relative py-24 bg-gray-50 dark:bg-secondary-blue/20 overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
+          backgroundSize: "32px 32px"
+        }} />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Başlık */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
+        >
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-blue dark:text-white mb-4">
+            {title}
+          </h2>
+          <p className="text-lg text-secondary-blue-muted dark:text-gray-300 max-w-xl mx-auto">
+            {subtitle}
+          </p>
+        </motion.div>
+
+        {/* Kategori filtre */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {gallerySectionData.categories.map((cat) => (
+            <button
+              key={cat.key}
+              onClick={() => setActiveCategory(cat.key)}
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                activeCategory === cat.key
+                  ? "bg-primary-orange text-white shadow-md shadow-primary-orange/30"
+                  : "bg-white dark:bg-white/10 text-secondary-blue dark:text-white border border-gray-200 dark:border-white/10 hover:border-primary-orange/40"
+              }`}
+            >
+              {isEn ? cat.label_en : cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Masonry Grid */}
+        <motion.div
+          layout
+          className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3"
+        >
+          {filtered.map((img, index) => (
+            <motion.div
+              key={img.id}
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              onClick={() => setLightbox(img.id)}
+              className="relative group cursor-pointer break-inside-avoid rounded-2xl overflow-hidden border border-gray-100 dark:border-white/5"
+            >
+              <Image
+                src={img.src}
+                alt={isEn ? img.alt_en : img.alt}
+                width={400}
+                height={300}
+                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-secondary-blue/0 group-hover:bg-secondary-blue/50 transition-all duration-300 flex items-center justify-center">
+                <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+              </div>
+              {/* Alt etiket */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <p className="text-white text-xs font-medium truncate">
+                  {isEn ? img.alt_en : img.alt}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && activeLightboxImg && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+            className="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl"
+            >
+              <Image
+                src={activeLightboxImg.src}
+                alt={isEn ? activeLightboxImg.alt_en : activeLightboxImg.alt}
+                width={1200}
+                height={800}
+                className="w-full object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-5">
+                <p className="text-white font-medium">
+                  {isEn ? activeLightboxImg.alt_en : activeLightboxImg.alt}
+                </p>
+              </div>
+              <button
+                onClick={() => setLightbox(null)}
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 flex items-center justify-center transition-colors duration-200"
+              >
+                <X className="w-5 h-5 text-white" />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
+
 function MobileServicesAccordion({
   services,
   iconMap,
+  detailLink,
 }: {
   services: { id: string; icon: string; title: string; description: string; features: string[] }[];
   iconMap: Record<string, any>;
+  detailLink: string;
 }) {
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -121,7 +277,7 @@ function MobileServicesAccordion({
                   href={`/hizmetler/${service.id}`}
                   className="inline-flex items-center gap-2 text-primary-orange font-semibold text-sm"
                 >
-                  Detaylı Bilgi
+                  {detailLink}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -147,10 +303,22 @@ function AnimatePresenceWrapper({ isOpen, children }: { isOpen: boolean; childre
 }
 
 export default function LandingPage() {
+  const { locale, t } = useLanguage();
+
+  const services = locale === "en" ? servicesEn : servicesTR;
+  const certifications = locale === "en" ? certificationsEn : certificationsTR;
+  const statistics = locale === "en" ? statisticsEn : statisticsTR;
+  const careerSteps = locale === "en" ? careerStepsEn : careerStepsTR;
+  const aboutSection = locale === "en" ? aboutSectionEn : aboutSectionTR;
+  const therapySteps = locale === "en" ? therapyStepsEn : therapyStepsTR;
+  const teamMember = locale === "en"
+    ? { ...teamMembers[0], ...teamMemberEn }
+    : teamMembers[0];
+
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen">
       <Navbar />
-      <DarkModeToggle />
+      <FloatingControls />
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -159,7 +327,7 @@ export default function LandingPage() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url(${heroContent.backgroundImage})`,
+              backgroundImage: `url(https://images.unsplash.com/photo-1579126038374-6064e9370f0f?q=80&w=2000&auto=format&fit=crop)`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-secondary-blue/95 via-secondary-blue/85 to-transparent" />
@@ -198,7 +366,7 @@ export default function LandingPage() {
               className="mb-6"
             >
               <span className="inline-block px-6 py-2 rounded-full bg-primary-orange/20 text-primary-orange font-semibold text-sm backdrop-blur-sm border border-primary-orange/30">
-                {siteConfig.tagline}
+                {t.hero.tagline}
               </span>
             </motion.div>
 
@@ -208,7 +376,7 @@ export default function LandingPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 leading-tight"
             >
-              {heroContent.title.split(" ").map((word, index) => (
+              {t.hero.title.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -227,7 +395,7 @@ export default function LandingPage() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed"
             >
-              {heroContent.subtitle}
+              {t.hero.subtitle}
             </motion.p>
 
             <motion.div
@@ -245,7 +413,7 @@ export default function LandingPage() {
                 className="group bg-primary-orange hover:bg-primary-orange-hover text-white font-semibold px-8 py-4 rounded-full shadow-2xl hover:shadow-primary-orange/50 transition-all duration-300 flex items-center gap-2"
               >
                 <MessageCircle className="w-5 h-5" />
-                {heroContent.primaryCta}
+                {t.hero.primaryCta}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </motion.a>
 
@@ -256,7 +424,7 @@ export default function LandingPage() {
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-secondary-blue font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2"
               >
                 <Phone className="w-5 h-5" />
-                Hemen Ara
+                {t.hero.secondaryCta}
               </motion.a>
             </motion.div>
           </div>
@@ -326,13 +494,13 @@ export default function LandingPage() {
             className="text-center mb-14"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary-orange/10 text-primary-orange text-sm font-semibold mb-4 border border-primary-orange/20">
-              Yeni Hastalar İçin Ön Bilgilendirme
+              {t.therapyProcess.badge}
             </span>
             <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-blue dark:text-white mb-4">
-              Terapi Süreci Nasıl İşliyor?
+              {t.therapyProcess.title}
             </h2>
             <p className="text-lg text-secondary-blue-muted dark:text-gray-300 max-w-2xl mx-auto">
-              Kliniğimize ilk kez geliyorsanız sizi bekleyen süreci önceden öğrenin.
+              {t.therapyProcess.subtitle}
             </p>
           </motion.div>
 
@@ -410,7 +578,7 @@ export default function LandingPage() {
             className="text-center mt-12"
           >
             <p className="text-secondary-blue-muted dark:text-gray-400 text-sm mb-5">
-              Değerlendirme seansı için randevu alabilir veya sorularınızı iletebilirsiniz.
+              {t.therapyProcess.ctaText}
             </p>
             <motion.a
               href={`https://wa.me/${contactInfo.whatsapp}`}
@@ -421,7 +589,7 @@ export default function LandingPage() {
               className="inline-flex items-center gap-2 bg-primary-orange hover:bg-primary-orange-hover text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300"
             >
               <MessageCircle className="w-5 h-5" />
-              WhatsApp ile Bilgi Al
+              {t.therapyProcess.ctaButton}
             </motion.a>
           </motion.div>
         </div>
@@ -445,10 +613,10 @@ export default function LandingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-blue dark:text-background-light mb-4">
-              Hizmetlerimiz
+              {t.services.title}
             </h2>
             <p className="text-lg text-secondary-blue-muted dark:text-gray-300 max-w-2xl mx-auto">
-              Bilimsel temelli, modern ve efektif fizyoterapi yaklaşımı ile size özel tedavi planları sunuyoruz
+              {t.services.subtitle}
             </p>
           </motion.div>
 
@@ -487,7 +655,7 @@ export default function LandingPage() {
                     href={`/hizmetler/${service.id}`}
                     className="text-primary-orange font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
                   >
-                    Detaylı Bilgi
+                    {t.services.detailLink}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </motion.div>
@@ -496,7 +664,7 @@ export default function LandingPage() {
           </div>
 
           {/* Mobil: Accordion */}
-          <MobileServicesAccordion services={services} iconMap={iconMap} />
+          <MobileServicesAccordion services={services} iconMap={iconMap} detailLink={t.services.detailLink} />
         </div>
       </section>
 
@@ -519,10 +687,10 @@ export default function LandingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-blue dark:text-white mb-4">
-              {aboutSection.title}
+              {t.about.title}
             </h2>
             <p className="text-lg text-secondary-blue-muted dark:text-gray-300 max-w-2xl mx-auto">
-              {aboutSection.subtitle}
+              {t.about.subtitle}
             </p>
           </motion.div>
 
@@ -544,21 +712,21 @@ export default function LandingPage() {
                     src={teamMembers[0].image}
                     alt={teamMembers[0].name}
                     fill
-                    className="object-cover"
+                    className="object-cover object-top"
                   />
                 </div>
                 {/* Kurucu rozeti */}
                 <div className="absolute -bottom-4 -right-4 bg-primary-orange text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
-                  Kurucu Fizyoterapist
+                  {t.about.founderBadge}
                 </div>
               </div>
 
               {/* İsim & Unvan */}
               <h3 className="text-3xl font-display font-bold text-secondary-blue dark:text-white mb-2 text-center lg:text-left">
-                {teamMembers[0].name}
+                {teamMember.name}
               </h3>
               <p className="text-primary-orange font-semibold mb-6 text-center lg:text-left">
-                {teamMembers[0].specialization}
+                {teamMember.specialization}
               </p>
 
               {/* Uzmanlık Rozeti */}
@@ -577,7 +745,7 @@ export default function LandingPage() {
               <div className="mt-8 p-6 rounded-2xl bg-white dark:bg-secondary-blue/40 border border-gray-100 dark:border-white/5 shadow-sm w-full">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-2 h-2 rounded-full bg-primary-orange" />
-                  <span className="text-xs font-bold text-primary-orange uppercase tracking-widest">FizikEND Hakkında</span>
+                  <span className="text-xs font-bold text-primary-orange uppercase tracking-widest">{t.about.clinicLabel}</span>
                 </div>
                 <p className="text-secondary-blue-muted dark:text-gray-300 text-sm leading-relaxed">
                   {aboutSection.clinicDescription}
@@ -594,13 +762,13 @@ export default function LandingPage() {
             >
               {/* Biyografi */}
               <p className="text-secondary-blue-muted dark:text-gray-300 leading-relaxed mb-10 text-base">
-                {teamMembers[0].bio}
+                {teamMember.bio}
               </p>
 
               {/* Kariyer Zaman Çizelgesi */}
               <h4 className="text-lg font-display font-bold text-secondary-blue dark:text-white mb-6 flex items-center gap-3">
                 <span className="w-8 h-0.5 bg-primary-orange" />
-                Kariyer & Eğitim
+                {t.about.careerTitle}
               </h4>
 
               <div className="relative">
@@ -665,10 +833,10 @@ export default function LandingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-display font-bold text-secondary-blue dark:text-white mb-4">
-              Sertifikalar ve Uzmanlıklar
+              {t.certifications.title}
             </h2>
             <p className="text-lg text-secondary-blue-muted dark:text-gray-300 max-w-2xl mx-auto">
-              Uluslararası geçerliliği olan sertifikalarımız ve uzmanlaşma alanlarımız
+              {t.certifications.subtitle}
             </p>
           </motion.div>
 
@@ -691,7 +859,7 @@ export default function LandingPage() {
                   {/* Öne Çıkan rozeti */}
                   {isFeatured && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary-blue text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
-                      ★ En Üst Düzey Uzmanlık
+                      {t.certifications.featuredBadge}
                     </div>
                   )}
 
@@ -732,12 +900,15 @@ export default function LandingPage() {
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-secondary-blue/5 dark:bg-white/5 border border-secondary-blue/10 dark:border-white/10">
               <CheckCircle2 className="w-5 h-5 text-primary-orange" />
               <span className="text-secondary-blue dark:text-white font-medium">
-                Tüm sertifikalar uluslararası geçerliliğe sahiptir
+                {t.certifications.badge}
               </span>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Gallery Section */}
+      <GallerySection locale={locale} />
 
       {/* CTA Section */}
       <section className="relative py-24 bg-gradient-to-br from-primary-orange to-primary-orange-hover overflow-hidden">
@@ -753,10 +924,10 @@ export default function LandingPage() {
             className="text-center max-w-3xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-              Hizmetlerimiz Hakkında Bilgi Alın
+              {t.cta.title}
             </h2>
             <p className="text-lg text-white/95 mb-10 leading-relaxed">
-              Hizmetlerimiz hakkında daha fazla bilgi almak veya değerlendirme talebinde bulunmak için bize ulaşabilirsiniz.
+              {t.cta.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.a
@@ -768,7 +939,7 @@ export default function LandingPage() {
                 className="bg-white text-primary-orange hover:bg-gray-50 font-bold px-10 py-4 rounded-full shadow-lg transition-all duration-300 text-lg flex items-center gap-2"
               >
                 <MessageCircle className="w-5 h-5" />
-                WhatsApp ile Randevu Al
+                {t.cta.whatsapp}
               </motion.a>
               <motion.a
                 href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}

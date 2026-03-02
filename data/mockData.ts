@@ -417,7 +417,7 @@ export const teamMembers: TeamMember[] = [
     name: "Fzt. Kadir Temel",
     title: "Kurucu Fizyoterapist",
     specialization: "IKOMT Advanced Practitioner · ISST Schroth Therapist",
-    image: "https://i.pravatar.cc/300?img=14", // Gerçek fotoğraf ile değiştirilmeli
+    image: "/kadirtemel.webp",
     bio: "Süleyman Demirel Üniversitesi Fizik Tedavi ve Rehabilitasyon Bölümü'nden 2014 yılında mezun olmuştur. Üniversite eğitimi sırasında Erasmus+ öğrenci değişim programıyla gittiği Polonya'nın Opole Politechnika Opolska Üniversitesi'nde farklı bir mesleki bakış açısı kazanmıştır. Ortopedik, nörolojik, spor yaralanmaları ve pediatrik yaklaşımlarla ilgili Türkiye'nin önde gelen birçok kurumunda staj yaparak kendini geliştirmiştir. 2023 yılında kurduğu FizikEND bünyesinde bilimsel temelli fizyoterapi hizmeti sunmaya devam etmektedir.",
   },
 ];
@@ -525,6 +525,105 @@ export const statistics = [
   { value: "Schroth", label: "Method Uygulayıcısı" },
   { value: "Muratpaşa", label: "Antalya" },
 ];
+
+// Gallery
+export interface GalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  alt_en: string;
+  category: "klinik" | "terapi" | "ekipman" | "etkinlik";
+  category_en: "clinic" | "therapy" | "equipment" | "event";
+  featured: boolean;
+}
+
+export const galleryImages: GalleryImage[] = [
+  {
+    id: "g1",
+    src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop",
+    alt: "FizikEND Klinik — Resepsiyon Alanı",
+    alt_en: "FizikEND Clinic — Reception Area",
+    category: "klinik",
+    category_en: "clinic",
+    featured: true,
+  },
+  {
+    id: "g2",
+    src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&auto=format&fit=crop",
+    alt: "Manuel Terapi Uygulaması",
+    alt_en: "Manual Therapy Session",
+    category: "terapi",
+    category_en: "therapy",
+    featured: true,
+  },
+  {
+    id: "g3",
+    src: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&auto=format&fit=crop",
+    alt: "Reformer Pilates Ekipmanı",
+    alt_en: "Reformer Pilates Equipment",
+    category: "ekipman",
+    category_en: "equipment",
+    featured: true,
+  },
+  {
+    id: "g4",
+    src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&auto=format&fit=crop",
+    alt: "Tedavi Seansı",
+    alt_en: "Treatment Session",
+    category: "terapi",
+    category_en: "therapy",
+    featured: false,
+  },
+  {
+    id: "g5",
+    src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&auto=format&fit=crop",
+    alt: "Klinik Tedavi Odası",
+    alt_en: "Clinic Treatment Room",
+    category: "klinik",
+    category_en: "clinic",
+    featured: false,
+  },
+  {
+    id: "g6",
+    src: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&auto=format&fit=crop",
+    alt: "Sportif Rehabilitasyon",
+    alt_en: "Sports Rehabilitation",
+    category: "terapi",
+    category_en: "therapy",
+    featured: false,
+  },
+  {
+    id: "g7",
+    src: "https://images.unsplash.com/photo-1593476087123-36d1de271f08?w=800&auto=format&fit=crop",
+    alt: "Fizyoterapi Ekipmanları",
+    alt_en: "Physiotherapy Equipment",
+    category: "ekipman",
+    category_en: "equipment",
+    featured: false,
+  },
+  {
+    id: "g8",
+    src: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=800&auto=format&fit=crop",
+    alt: "Egzersiz ve Danışmanlık",
+    alt_en: "Exercise & Consultation",
+    category: "terapi",
+    category_en: "therapy",
+    featured: true,
+  },
+];
+
+export const gallerySectionData = {
+  title: "Galeri",
+  title_en: "Gallery",
+  subtitle: "Kliniğimizden ve tedavi süreçlerimizden kareler",
+  subtitle_en: "Moments from our clinic and treatment processes",
+  categories: [
+    { key: "tumu", label: "Tümü", label_en: "All" },
+    { key: "klinik", label: "Klinik", label_en: "Clinic" },
+    { key: "terapi", label: "Terapi", label_en: "Therapy" },
+    { key: "ekipman", label: "Ekipman", label_en: "Equipment" },
+  ],
+};
 
 // FAQ Data
 export const faqs = [
