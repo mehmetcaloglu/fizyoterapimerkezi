@@ -18,9 +18,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "FizikEND - Modern Human Engineering | Antalya Fizyoterapi",
-  description: "Antalya'nın en modern fizyoterapi merkezi. Hareket özgürlüğünüz için bilim ve teknoloji.",
-  keywords: ["fizyoterapi", "antalya", "rehabilitasyon", "manuel terapi", "spor fizyoterapisi"],
+  title: "Fizyoterapist Kadir Temel | Antalya Fizyoterapi",
+  description: "Antalya Muratpaşa'da IKOMT, Schroth Method Skolyoz Rehabilitasyonu ve kaliteli fizyoterapi hizmeti. Bilimsel temelli, modern ve efektif tedavi yaklaşımı.",
+  keywords: ["fizyoterapi", "antalya", "muratpaşa", "rehabilitasyon", "manuel terapi", "IKOMT", "schroth", "skolyoz"],
 };
 
 export default function RootLayout({

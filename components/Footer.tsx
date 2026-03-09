@@ -47,9 +47,8 @@ export default function Footer() {
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-4">
                 <img src="/logo-icon.svg" alt="" className="h-10 w-auto brightness-0 invert" />
-                <span className="text-2xl font-black tracking-tight leading-none">
-                  <span className="text-primary-orange">Fizik</span>
-                  <span className="text-white">END</span>
+                <span className="text-xl font-black tracking-tight leading-none text-white">
+                  {siteConfig.name}
                 </span>
               </div>
               <p className="text-gray-300 leading-relaxed">
@@ -210,7 +209,7 @@ export default function Footer() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="FizikEND Fizyoterapi Merkezi Konum"
+              title="Fzt. Kadir Temel Fizyoterapi Merkezi Konum"
               className="w-full"
             />
           </div>

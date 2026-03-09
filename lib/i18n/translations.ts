@@ -47,9 +47,12 @@ export const translations = {
     about: {
       title: "Bizi Tanıyın",
       subtitle: "Bilimsel temelli fizyoterapi anlayışıyla danışanlarımıza bütüncül bir iyilik hali sunuyoruz.",
-      clinicLabel: "FizikEND Hakkında",
+      clinicLabel: "Fzt. Kadir Temel Hakkında",
       careerTitle: "Kariyer & Eğitim",
       founderBadge: "Kurucu Fizyoterapist",
+      specialInterests: "Özel İlgi Alanları",
+      vision: "Vizyonumuz",
+      mission: "Misyonumuz",
     },
     // Certifications
     certifications: {
@@ -143,9 +146,12 @@ export const translations = {
     about: {
       title: "About Us",
       subtitle: "Providing holistic wellbeing through evidence-based physiotherapy.",
-      clinicLabel: "About FizikEND",
+      clinicLabel: "About Physio. Kadir Temel",
       careerTitle: "Career & Education",
       founderBadge: "Founder Physiotherapist",
+      specialInterests: "Special Interest Areas",
+      vision: "Our Vision",
+      mission: "Our Mission",
     },
     // Certifications
     certifications: {

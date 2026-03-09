@@ -63,7 +63,8 @@ export interface ContactInfo {
 
 // Site Configuration - GERÇEK BİLGİLER
 export const siteConfig = {
-  name: "FizikEND",
+  name: "Fizyoterapist Kadir TEMEL",
+  nameShort: "Fzt. Kadir TEMEL",
   tagline: "Fizyoterapi ve Danışmanlık Merkezi",
   description: "Antalya Muratpaşa'da IKOMT, Schroth Method Skolyoz Rehabilitasyonu ve kaliteli fizyoterapi hizmeti. Bilimsel temelli, modern ve efektif tedavi yaklaşımı.",
 };
@@ -91,7 +92,7 @@ export const services: Service[] = [
   {
     id: "ikomt",
     icon: "Brain",
-    title: "IKOMT Ağrı Terapisi",
+    title: "Akut ve Kronik Ağrı Yönetimi (IKOMT ADVANCED THERAPIST)",
     description: "Klinik odaklı multiboyutlu ağrı terapisi ile bütüncül bir yaklaşım.",
     fullDescription: "IKOMT, ağrıların azaltılmasına veya uzun vadede ortadan kaldırılmasına yönelik geliştirilmiş bir terapi ve eğitim konseptidir. İnsan bir bütün olarak değerlendirilir; fizyolojik, mental, duygusal ve psikososyal etkenler birlikte ele alınır.",
     features: [
@@ -104,7 +105,7 @@ export const services: Service[] = [
   {
     id: "skolyoz",
     icon: "Activity",
-    title: "Skolyoz Rehabilitasyonu",
+    title: "Skolyoz/Kifoz (ISST SCHROTH METHOD)",
     description: "Schroth Method ile 3 boyutlu düzeltici egzersizler.",
     fullDescription: "Omurganın 3 boyutlu eğrilmesi olan skolyoz tedavisinde, bilimsel olarak dünyaca kabul görmüş Schroth Method egzersizleri üzerine uzmanlaşmış fizyoterapistlerimiz kişinin eğriliğine göre egzersiz programları dizayn eder ve uygular.",
     features: [
@@ -130,7 +131,7 @@ export const services: Service[] = [
   {
     id: "sportif-rehabilitasyon",
     icon: "Dumbbell",
-    title: "Sportif Rehabilitasyon",
+    title: "Sporcu Rehabilitasyonu",
     description: "Sporcuların güvenli ve hızlı bir şekilde sahaya dönüşü için özel programlar.",
     fullDescription: "Sportif aktivite esnasında sakatlanan sporcunun güvenli bir şekilde spora dönüşünü sağlamak için uygulanan rehabilitasyon programıdır. Yaralanma riski ve performans belirlenir, kişiye özgü koruyucu egzersiz programı düzenlenir.",
     features: [
@@ -370,7 +371,7 @@ export const certifications: Certification[] = [
     id: "ikomt-advanced-cert",
     title: "IKOMT Advanced Practitioner",
     organization: "Uluslararası IKOMT Akademisi",
-    description: "Klinik Odaklı Multiboyutlu Ağrı Terapisi'nin en üst düzey uygulayıcı sertifikası. 1. Kur: NMST Practitioner (2022) · 2. Kur: Advanced Practitioner (2025).",
+    description: "IKOMT ileri seviye klinik uzmanlık programı tamamlayarak IKOMT Advanced Practitioner ünvanını almıştır.",
     icon: "Award",
   },
   {
@@ -418,7 +419,7 @@ export const teamMembers: TeamMember[] = [
     title: "Kurucu Fizyoterapist",
     specialization: "IKOMT Advanced Practitioner · ISST Schroth Therapist",
     image: "/kadirtemel.webp",
-    bio: "Süleyman Demirel Üniversitesi Fizik Tedavi ve Rehabilitasyon Bölümü'nden 2014 yılında mezun olmuştur. Üniversite eğitimi sırasında Erasmus+ öğrenci değişim programıyla gittiği Polonya'nın Opole Politechnika Opolska Üniversitesi'nde farklı bir mesleki bakış açısı kazanmıştır. Ortopedik, nörolojik, spor yaralanmaları ve pediatrik yaklaşımlarla ilgili Türkiye'nin önde gelen birçok kurumunda staj yaparak kendini geliştirmiştir. 2023 yılında kurduğu FizikEND bünyesinde bilimsel temelli fizyoterapi hizmeti sunmaya devam etmektedir.",
+    bio: "Süleyman Demirel Üniversitesi Fizik Tedavi ve Rehabilitasyon Bölümü'nden 2014 yılında mezun olmuştur. Üniversite eğitimi sırasında Erasmus+ öğrenci değişim programıyla gittiği Polonya'nın Opole Politechnika Opolska Üniversitesi'nde farklı bir mesleki bakış açısı kazanmıştır. Ortopedik, nörolojik, spor yaralanmaları ve pediatrik yaklaşımlarla ilgili Türkiye'nin önde gelen birçok kurumunda staj yaparak kendini geliştirmiştir. 2023 yılında Antalya Muratpaşa'da kurduğu klinikte bilimsel temelli fizyoterapi hizmeti sunmaya devam etmektedir.",
   },
 ];
 
@@ -440,19 +441,14 @@ export const careerSteps: CareerStep[] = [
     description: "Özel klinik bünyesinde skolyoz rehabilitasyonu ve modern ağrı yönetimi alanında uzmanlaşma.",
   },
   {
-    year: "2022",
-    title: "IKOMT NMST Practitioner · ISST Schroth Therapist",
-    description: "IKOMT Klinik Odaklı Multiboyutlu Ağrı Terapisi 1. kur (NMST) eğitimini ve ISST Schroth Method eğitimini başarıyla tamamladı.",
-  },
-  {
     year: "2023",
-    title: "FizikEND'in Kuruluşu",
-    description: "Antalya Muratpaşa'da FizikEND Fizyoterapi ve Danışmanlık Merkezi'ni kurdu.",
+    title: "Klinik Kuruluşu",
+    description: "Antalya Muratpaşa'da Fizyoterapi ve Danışmanlık Merkezi'ni kurdu.",
   },
   {
     year: "2025",
     title: "IKOMT Advanced Practitioner",
-    description: "IKOMT 2. kur Advanced eğitimini tamamlayarak 'IKOMT Advanced Practitioner' unvanını aldı.",
+    description: "IKOMT ileri seviye klinik uzmanlık programı tamamlayarak IKOMT Advanced Practitioner ünvanını almıştır.",
   },
 ];
 
@@ -496,11 +492,37 @@ export const therapySteps: TherapyStep[] = [
   },
 ];
 
+// Vizyon & Misyon
+export interface VisionMission {
+  vision: { title: string; text: string };
+  mission: { title: string; text: string };
+}
+
+export const visionMission: VisionMission = {
+  vision: {
+    title: "VİZYONUMUZ",
+    text: "Bilimsel temele dayanan, etik değerlere bağlı ve bütüncül değerlendirme odaklı fizyoterapi anlayışını istikrarlı bir mesleki duruş olarak sürdürüp danışanlarının yaşam kalitesini yükseltmektir.",
+  },
+  mission: {
+    title: "MİSYONUMUZ",
+    text: "Her bireyi kendi klinik özellikleri içinde ele alarak, planlı ve kişiye özgü fizyoterapi sürecini profesyonel sorumluluk bilinciyle yürütürken uluslararası ölçekte referans kabul edilen bir fizyoterapi merkezi olmaktır.",
+  },
+};
+
+// Özel İlgi Alanları
+export const specialInterestAreas: string[] = [
+  "Omuz rehabilitasyonu",
+  "Diz rehabilitasyonu",
+  "Omurga sağlığı (skolyoz, kifoz)",
+  "El, el bileği rehabilitasyonu",
+  "Kronik ağrı tedavisi",
+];
+
 // Hakkımızda Bölümü
 export const aboutSection: AboutSection = {
   title: "Bizi Tanıyın",
   subtitle: "Bilimsel temelli fizyoterapi anlayışıyla danışanlarımıza bütüncül bir iyilik hali sunuyoruz.",
-  clinicDescription: "Antalya Muratpaşa'da Nisan 2023'te kurulan FizikEND, kaliteli fizyoterapi hizmeti sunmayı hedeflemektedir. Alanında uzman fizyoterapistlerin klinik deneyimleri bilime dayalı fizyoterapi yöntemleriyle harmanlanır.",
+  clinicDescription: "Antalya Muratpaşa'da Nisan 2023'te kurulan merkezimiz, kaliteli fizyoterapi hizmeti sunmayı hedeflemektedir. Alanında uzman fizyoterapistlerin klinik deneyimleri bilime dayalı fizyoterapi yöntemleriyle harmanlanır.",
   foundedYear: "2023",
 };
 
@@ -541,8 +563,8 @@ export const galleryImages: GalleryImage[] = [
   {
     id: "g1",
     src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop",
-    alt: "FizikEND Klinik — Resepsiyon Alanı",
-    alt_en: "FizikEND Clinic — Reception Area",
+    alt: "Klinik — Resepsiyon Alanı",
+    alt_en: "Clinic — Reception Area",
     category: "klinik",
     category_en: "clinic",
     featured: true,

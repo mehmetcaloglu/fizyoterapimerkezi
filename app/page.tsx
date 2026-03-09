@@ -35,6 +35,8 @@ import {
   careerSteps as careerStepsTR,
   aboutSection as aboutSectionTR,
   therapySteps as therapyStepsTR,
+  visionMission,
+  specialInterestAreas,
   galleryImages,
   gallerySectionData,
 } from "@/data/mockData";
@@ -46,6 +48,8 @@ import {
   aboutSectionEn,
   careerStepsEn,
   therapyStepsEn,
+  visionMissionEn,
+  specialInterestAreasEn,
 } from "@/lib/i18n/content-en";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -310,6 +314,8 @@ export default function LandingPage() {
   const statistics = locale === "en" ? statisticsEn : statisticsTR;
   const careerSteps = locale === "en" ? careerStepsEn : careerStepsTR;
   const aboutSection = locale === "en" ? aboutSectionEn : aboutSectionTR;
+  const visionMissionData = locale === "en" ? visionMissionEn : visionMission;
+  const specialInterests = locale === "en" ? specialInterestAreasEn : specialInterestAreas;
   const therapySteps = locale === "en" ? therapyStepsEn : therapyStepsTR;
   const teamMember = locale === "en"
     ? { ...teamMembers[0], ...teamMemberEn }
@@ -731,7 +737,10 @@ export default function LandingPage() {
 
               {/* Uzmanlık Rozeti */}
               <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                {["IKOMT Advanced Practitioner", "ISST Schroth Therapist", "Manuel Terapi"].map((badge) => (
+                {(locale === "en"
+                  ? ["IKOMT Advanced Practitioner", "ISST Schroth Therapist", "Manual Therapy"]
+                  : ["IKOMT Advanced Practitioner", "ISST Schroth Therapist", "Manuel Terapi"]
+                ).map((badge) => (
                   <span
                     key={badge}
                     className="px-3 py-1.5 rounded-full bg-secondary-blue/10 dark:bg-white/10 text-secondary-blue dark:text-white text-xs font-semibold border border-secondary-blue/10 dark:border-white/10"
@@ -741,7 +750,7 @@ export default function LandingPage() {
                 ))}
               </div>
 
-              {/* FizikEND Hakkında Kutusu */}
+              {/* Fzt. Kadir Temel Hakkında Kutusu */}
               <div className="mt-8 p-6 rounded-2xl bg-white dark:bg-secondary-blue/40 border border-gray-100 dark:border-white/5 shadow-sm w-full">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-2 h-2 rounded-full bg-primary-orange" />
@@ -750,6 +759,22 @@ export default function LandingPage() {
                 <p className="text-secondary-blue-muted dark:text-gray-300 text-sm leading-relaxed">
                   {aboutSection.clinicDescription}
                 </p>
+              </div>
+
+              {/* Özel İlgi Alanları */}
+              <div className="mt-8 w-full">
+                <h4 className="text-lg font-display font-bold text-secondary-blue dark:text-white mb-4 flex items-center gap-3">
+                  <span className="w-8 h-0.5 bg-primary-orange" />
+                  {t.about.specialInterests}
+                </h4>
+                <ul className="space-y-2">
+                  {specialInterests.map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-secondary-blue-muted dark:text-gray-300 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-primary-orange flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
 
@@ -804,6 +829,28 @@ export default function LandingPage() {
                       </div>
                     </motion.div>
                   ))}
+                </div>
+              </div>
+
+              {/* Vizyon & Misyon */}
+              <div className="mt-12 space-y-8">
+                <div>
+                  <h4 className="text-lg font-display font-bold text-secondary-blue dark:text-white mb-3 flex items-center gap-3">
+                    <span className="w-8 h-0.5 bg-primary-orange" />
+                    {visionMissionData.vision.title}
+                  </h4>
+                  <p className="text-secondary-blue-muted dark:text-gray-300 text-sm leading-relaxed pl-11">
+                    {visionMissionData.vision.text}
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-display font-bold text-secondary-blue dark:text-white mb-3 flex items-center gap-3">
+                    <span className="w-8 h-0.5 bg-primary-orange" />
+                    {visionMissionData.mission.title}
+                  </h4>
+                  <p className="text-secondary-blue-muted dark:text-gray-300 text-sm leading-relaxed pl-11">
+                    {visionMissionData.mission.text}
+                  </p>
                 </div>
               </div>
             </motion.div>

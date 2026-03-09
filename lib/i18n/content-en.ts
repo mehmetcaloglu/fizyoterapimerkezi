@@ -4,7 +4,7 @@ export const servicesEn = [
   {
     id: "ikomt",
     icon: "Brain",
-    title: "IKOMT Pain Therapy",
+    title: "Acute and Chronic Pain Management (IKOMT ADVANCED THERAPIST)",
     description: "A holistic, clinically-oriented multidimensional pain therapy approach.",
     fullDescription:
       "IKOMT is a therapy and education concept developed to reduce or eliminate pain in the long term. The person is evaluated as a whole; physiological, mental, emotional and psychosocial factors are all addressed together.",
@@ -18,7 +18,7 @@ export const servicesEn = [
   {
     id: "skolyoz",
     icon: "Activity",
-    title: "Scoliosis Rehabilitation",
+    title: "Scoliosis/Kyphosis (ISST SCHROTH METHOD)",
     description: "Three-dimensional corrective exercises using the Schroth Method.",
     fullDescription:
       "For the treatment of scoliosis — a three-dimensional curvature of the spine — our physiotherapists specialised in the internationally recognised Schroth Method design and apply exercise programmes tailored to the individual's specific curvature.",
@@ -149,7 +149,7 @@ export const certificationsEn = [
     title: "IKOMT Advanced Practitioner",
     organization: "International IKOMT Academy",
     description:
-      "The highest-level practitioner certification in Clinically Oriented Multidimensional Pain Therapy. Level 1: NMST Practitioner (2022) · Level 2: Advanced Practitioner (2025).",
+      "Completed the IKOMT advanced clinical expertise programme and received the IKOMT Advanced Practitioner title.",
     icon: "Award",
   },
   {
@@ -188,14 +188,14 @@ export const teamMemberEn = {
   name: "Physio. Kadir Temel",
   title: "Founder Physiotherapist",
   specialization: "IKOMT Advanced Practitioner · ISST Schroth Therapist",
-  bio: "Kadir Temel graduated from Süleyman Demirel University, Department of Physical Therapy and Rehabilitation in 2014. During his studies, he gained an international professional perspective through the Erasmus+ exchange programme at Opole University of Technology in Poland. He further developed his skills through internships at leading institutions in Turkey across orthopaedic, neurological, sports injury and paediatric approaches. He founded FizikEND in 2023 and continues to provide evidence-based physiotherapy services.",
+  bio: "Kadir Temel graduated from Süleyman Demirel University, Department of Physical Therapy and Rehabilitation in 2014. During his studies, he gained an international professional perspective through the Erasmus+ exchange programme at Opole University of Technology in Poland. He further developed his skills through internships at leading institutions in Turkey across orthopaedic, neurological, sports injury and paediatric approaches. He established his clinic in Muratpaşa, Antalya in 2023 and continues to provide evidence-based physiotherapy services.",
 };
 
 export const aboutSectionEn = {
   title: "About Us",
   subtitle: "Providing holistic wellbeing through evidence-based physiotherapy.",
   clinicDescription:
-    "Founded in April 2023 in Muratpaşa, Antalya, FizikEND aims to deliver high-quality physiotherapy services. The clinical experience of specialist physiotherapists is blended with evidence-based physiotherapy methods to provide clients with a holistic sense of wellbeing.",
+    "Our centre, founded in April 2023 in Muratpaşa, Antalya, aims to deliver high-quality physiotherapy services. The clinical experience of specialist physiotherapists is blended with evidence-based physiotherapy methods to provide clients with a holistic sense of wellbeing.",
   foundedYear: "2023",
 };
 
@@ -219,23 +219,36 @@ export const careerStepsEn = [
       "Specialised in scoliosis rehabilitation and modern pain management at a private clinic.",
   },
   {
-    year: "2022",
-    title: "IKOMT NMST Practitioner · ISST Schroth Therapist",
-    description:
-      "Successfully completed IKOMT Level 1 (NMST) training and the ISST Schroth Method certification programme.",
-  },
-  {
     year: "2023",
-    title: "Founding of FizikEND",
+    title: "Clinic Establishment",
     description:
-      "Established FizikEND Physiotherapy & Consultancy Centre in Muratpaşa, Antalya.",
+      "Established Physiotherapy & Consultancy Centre in Muratpaşa, Antalya.",
   },
   {
     year: "2025",
     title: "IKOMT Advanced Practitioner",
     description:
-      "Completed IKOMT Level 2 Advanced training and received the 'IKOMT Advanced Practitioner' title.",
+      "Completed the IKOMT advanced clinical expertise programme and received the IKOMT Advanced Practitioner title.",
   },
+];
+
+export const visionMissionEn = {
+  vision: {
+    title: "OUR VISION",
+    text: "To sustain an evidence-based, ethically grounded and holistic assessment-focused physiotherapy approach as a consistent professional stance and to enhance the quality of life of our clients.",
+  },
+  mission: {
+    title: "OUR MISSION",
+    text: "To become an internationally recognised physiotherapy centre by addressing each individual within their own clinical context and conducting a planned, person-specific physiotherapy process with professional responsibility.",
+  },
+};
+
+export const specialInterestAreasEn = [
+  "Shoulder rehabilitation",
+  "Knee rehabilitation",
+  "Spinal health (scoliosis, kyphosis)",
+  "Hand and wrist rehabilitation",
+  "Chronic pain treatment",
 ];
 
 export const therapyStepsEn = [

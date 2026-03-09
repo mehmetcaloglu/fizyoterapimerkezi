@@ -52,9 +52,9 @@ export default function Navbar() {
                 alt=""
                 className="h-11 w-auto transition-opacity duration-300 group-hover:opacity-80"
               />
-              <span className="text-2xl font-black tracking-tight leading-none">
-                <span className="text-primary-orange">Fizik</span>
-                <span className="text-secondary-blue dark:text-white">END</span>
+              <span className="text-xl font-black tracking-tight leading-none text-secondary-blue dark:text-white">
+                <span className="hidden sm:inline">{siteConfig.name}</span>
+                <span className="sm:hidden">{siteConfig.nameShort}</span>
               </span>
             </Link>
 
@@ -153,9 +153,8 @@ export default function Navbar() {
                 <div className="mb-8">
                   <div className="flex items-center gap-2 mb-2">
                     <img src="/logo-icon.svg" alt="" className="h-12 w-auto" />
-                    <span className="text-3xl font-black tracking-tight leading-none">
-                      <span className="text-primary-orange">Fizik</span>
-                      <span className="text-secondary-blue dark:text-white">END</span>
+                    <span className="text-2xl font-black tracking-tight leading-none text-secondary-blue dark:text-white">
+                      {siteConfig.name}
                     </span>
                   </div>
                   <div className="text-sm text-primary-orange font-semibold">{t.hero.tagline}</div>
