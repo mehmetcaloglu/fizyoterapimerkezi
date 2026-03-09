@@ -441,6 +441,11 @@ export const careerSteps: CareerStep[] = [
     description: "Özel klinik bünyesinde skolyoz rehabilitasyonu ve modern ağrı yönetimi alanında uzmanlaşma.",
   },
   {
+    year: "2022",
+    title: "IKOMT NMST Practitioner · ISST Schroth Therapist",
+    description: "IKOMT Klinik Odaklı Multiboyutlu Ağrı Terapisi (NMST) eğitimini ve ISST Schroth Method eğitimini başarıyla tamamladı.",
+  },
+  {
     year: "2023",
     title: "Klinik Kuruluşu",
     description: "Antalya Muratpaşa'da Fizyoterapi ve Danışmanlık Merkezi'ni kurdu.",

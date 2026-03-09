@@ -219,6 +219,12 @@ export const careerStepsEn = [
       "Specialised in scoliosis rehabilitation and modern pain management at a private clinic.",
   },
   {
+    year: "2022",
+    title: "IKOMT NMST Practitioner · ISST Schroth Therapist",
+    description:
+      "Successfully completed IKOMT Clinically Oriented Multidimensional Pain Therapy (NMST) training and ISST Schroth Method certification programme.",
+  },
+  {
     year: "2023",
     title: "Clinic Establishment",
     description:
