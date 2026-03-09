@@ -1,18 +1,22 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Instagram, MessageCircle } from "lucide-react";
 import { contactInfo, siteConfig } from "@/data/mockData";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const navHrefs = ["#hero", "#services", "#about", "#certifications", "#contact"];
+const navHrefs = ["#hero", "#services", "#terapi-sureci", "#about", "#certifications", "#galeri", "#contact"];
 
 export default function Footer() {
   const { locale, t } = useLanguage();
+  const pathname = usePathname();
 
-  const navLabels = [t.nav.home, t.nav.services, t.nav.about, t.nav.certifications, t.nav.contact];
+  const navLabels = [t.nav.home, t.nav.services, t.nav.therapyProcess, t.nav.about, t.nav.certifications, t.nav.gallery, t.nav.contact];
   const navLinks = navHrefs.map((href, i) => ({ href, label: navLabels[i] }));
+  const isHomePage = pathname === "/";
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -89,17 +93,27 @@ export default function Footer() {
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.href);
-                    }}
-                    className="text-gray-300 hover:text-primary-orange transition-colors duration-300 inline-flex items-center gap-2 group"
-                  >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-primary-orange transition-all duration-300" />
-                    {link.label}
-                  </a>
+                  {isHomePage ? (
+                    <a
+                      href={link.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(link.href);
+                      }}
+                      className="text-gray-300 hover:text-primary-orange transition-colors duration-300 inline-flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-2 h-0.5 bg-primary-orange transition-all duration-300" />
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={`/${link.href}`}
+                      className="text-gray-300 hover:text-primary-orange transition-colors duration-300 inline-flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-2 h-0.5 bg-primary-orange transition-all duration-300" />
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

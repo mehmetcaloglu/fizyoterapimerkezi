@@ -333,7 +333,7 @@ export default function LandingPage() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url(https://images.unsplash.com/photo-1579126038374-6064e9370f0f?q=80&w=2000&auto=format&fit=crop)`,
+              backgroundImage: `url(/hero.png)`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-secondary-blue/95 via-secondary-blue/85 to-transparent" />
@@ -958,7 +958,7 @@ export default function LandingPage() {
       <GallerySection locale={locale} />
 
       {/* CTA Section */}
-      <section className="relative py-24 bg-gradient-to-br from-primary-orange to-primary-orange-hover overflow-hidden">
+      <section id="contact" className="relative py-24 bg-gradient-to-br from-primary-orange to-primary-orange-hover overflow-hidden">
         {/* Subtle Overlay */}
         <div className="absolute inset-0 bg-black/5" />
 

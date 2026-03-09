@@ -9,6 +9,9 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      screens: {
+        nav: "1526px", // Navbar tam genişlik için - 1525px altında kompakt mod
+      },
       colors: {
         border: "rgba(12, 29, 79, 0.1)",
         primary: {

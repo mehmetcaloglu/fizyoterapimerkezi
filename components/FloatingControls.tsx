@@ -51,7 +51,7 @@ export default function FloatingControls() {
     "p-3.5 rounded-full bg-white dark:bg-secondary-blue shadow-xl border border-gray-200 dark:border-primary-orange/20 hover:shadow-primary-orange/20 transition-all duration-300";
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-24 md:bottom-8 right-8 z-50 flex flex-col items-end gap-3">
       {/* Dil seçici dropdown */}
       <div ref={langRef} className="relative">
         <AnimatePresence>

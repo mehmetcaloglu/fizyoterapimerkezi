@@ -8,7 +8,7 @@ import { Menu, X, Phone, MessageCircle, Instagram } from "lucide-react";
 import { siteConfig, contactInfo } from "@/data/mockData";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const navHrefs = ["#hero", "#services", "#about", "#certifications", "#contact"];
+const navHrefs = ["#hero", "#services", "#terapi-sureci", "#about", "#certifications", "#galeri", "#contact"];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,7 +16,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { t } = useLanguage();
 
-  const navLabels = [t.nav.home, t.nav.services, t.nav.about, t.nav.certifications, t.nav.contact];
+  const navLabels = [t.nav.home, t.nav.services, t.nav.therapyProcess, t.nav.about, t.nav.certifications, t.nav.gallery, t.nav.contact];
   const navLinks = navHrefs.map((href, i) => ({ href, label: navLabels[i] }));
 
   useEffect(() => {
@@ -43,37 +43,37 @@ export default function Navbar() {
           isScrolled ? "bg-white/80 dark:bg-secondary-blue/80 backdrop-blur-xl shadow-lg" : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-0 xl:px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link href="/#hero" onClick={(e) => handleLinkClick(e, "#hero")} className="flex items-center gap-2 group">
+            {/* Logo - flex-shrink-0 ile sıkışmada üstüne çıkmasını önle */}
+            <Link href="/#hero" onClick={(e) => handleLinkClick(e, "#hero")} className="flex items-center gap-2 group flex-shrink-0 min-w-0">
               <img
                 src="/logo-icon.svg"
                 alt=""
-                className="h-11 w-auto transition-opacity duration-300 group-hover:opacity-80"
+                className="h-10 xl:h-11 w-auto transition-opacity duration-300 group-hover:opacity-80 flex-shrink-0"
               />
-              <span className="text-xl font-black tracking-tight leading-none text-secondary-blue dark:text-white">
+              <span className="text-lg xl:text-xl font-black tracking-tight leading-none text-secondary-blue dark:text-white truncate">
                 <span className="hidden sm:inline">{siteConfig.name}</span>
                 <span className="sm:hidden">{siteConfig.nameShort}</span>
               </span>
             </Link>
 
-            {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-8">
+            {/* Desktop Nav - 1024-1525 arası kompakt (gap-4), 1526+ rahat (gap-6) */}
+            <div className="hidden lg:flex items-center gap-4 nav:gap-6 2xl:gap-8 flex-shrink min-w-0">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href.startsWith("#") ? `/${link.href}` : link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className="text-secondary-blue dark:text-white hover:text-primary-orange dark:hover:text-primary-orange transition-colors duration-300 font-semibold"
+                  className="text-secondary-blue dark:text-white hover:text-primary-orange dark:hover:text-primary-orange transition-colors duration-300 font-semibold text-sm nav:text-base whitespace-nowrap"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
 
-            {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-3">
+            {/* Desktop CTA - lg'de daha kompakt */}
+            <div className="hidden lg:flex items-center gap-2 xl:gap-3 flex-shrink-0">
               <motion.a
                 href={contactInfo.instagram}
                 target="_blank"
@@ -81,7 +81,7 @@ export default function Navbar() {
                 aria-label="Instagram"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-9 h-9 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-primary-orange dark:hover:bg-primary-orange flex items-center justify-center transition-colors duration-300 text-secondary-blue dark:text-white hover:text-white"
+                className="w-8 h-8 xl:w-9 xl:h-9 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-primary-orange dark:hover:bg-primary-orange flex items-center justify-center transition-colors duration-300 text-secondary-blue dark:text-white hover:text-white"
               >
                 <Instagram className="w-4 h-4" />
               </motion.a>
@@ -102,7 +102,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary-orange hover:bg-primary-orange-hover text-white font-semibold px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
+                className="bg-primary-orange hover:bg-primary-orange-hover text-white font-semibold px-4 py-2 xl:px-5 xl:py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm"
               >
                 <MessageCircle className="w-4 h-4" />
                 {t.nav.appointment}

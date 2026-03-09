@@ -1,33 +1,40 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { contactInfo, siteConfig } from "@/data/mockData";
-
-export const metadata = {
-  title: "KVKK Aydınlatma Metni | Fizyoterapist Kadir Temel",
-  description: "Fzt. Kadir Temel Fizyoterapi ve Danışmanlık Merkezi KVKK Kişisel Verilerin Korunması Kanunu Aydınlatma Metni",
-};
+import { contactInfo } from "@/data/mockData";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import FloatingControls from "@/components/FloatingControls";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function KVKKPage() {
+  const { t } = useLanguage();
+  const kvkk = t.kvkk;
+
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark">
+      <Navbar />
+      <FloatingControls />
+
       {/* Header */}
-      <div className="bg-secondary-blue text-white py-16">
+      <div className="bg-secondary-blue text-white py-16 pt-28">
         <div className="container mx-auto px-4">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors duration-300 mb-6 text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
-            Ana Sayfaya Dön
+            {kvkk.backToHome}
           </Link>
           <h1 className="text-4xl md:text-5xl font-display font-bold">
-            KVKK Aydınlatma Metni
+            {kvkk.title}
           </h1>
           <p className="text-gray-300 mt-3 text-lg">
-            Kişisel Verilerin Korunması Kanunu Kapsamında Aydınlatma Metni
+            {kvkk.subtitle}
           </p>
-          <p className="text-gray-400 text-sm mt-2">Son güncelleme: Mart 2026</p>
+          <p className="text-gray-400 text-sm mt-2">{kvkk.lastUpdate}</p>
         </div>
       </div>
 
@@ -223,7 +230,7 @@ export default function KVKKPage() {
             className="inline-flex items-center gap-2 bg-secondary-blue hover:bg-secondary-blue/90 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
           >
             <ArrowLeft className="w-5 h-5" />
-            Ana Sayfaya Dön
+            {kvkk.backButton}
           </Link>
         </div>
       </div>

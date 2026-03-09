@@ -6,8 +6,10 @@ export const translations = {
     nav: {
       home: "Anasayfa",
       services: "Hizmetler",
+      therapyProcess: "Terapi Süreci",
       about: "Hakkımızda",
       certifications: "Sertifikalar",
+      gallery: "Galeri",
       contact: "İletişim",
       appointment: "Randevu Al",
       callUs: "Hemen Ara",
@@ -82,6 +84,14 @@ export const translations = {
       rights: "Tüm hakları saklıdır.",
       kvkk: "KVKK Aydınlatma Metni",
     },
+    // KVKK Page
+    kvkk: {
+      backToHome: "Ana Sayfaya Dön",
+      title: "KVKK Aydınlatma Metni",
+      subtitle: "Kişisel Verilerin Korunması Kanunu Kapsamında Aydınlatma Metni",
+      lastUpdate: "Son güncelleme: Mart 2026",
+      backButton: "Ana Sayfaya Dön",
+    },
     // Service Detail Page
     serviceDetail: {
       backButton: "Tüm Hizmetler",
@@ -105,8 +115,10 @@ export const translations = {
     nav: {
       home: "Home",
       services: "Services",
+      therapyProcess: "Therapy Process",
       about: "About Us",
       certifications: "Certifications",
+      gallery: "Gallery",
       contact: "Contact",
       appointment: "Book Appointment",
       callUs: "Call Now",
@@ -180,6 +192,14 @@ export const translations = {
       openInMaps: "Open in Google Maps",
       rights: "All rights reserved.",
       kvkk: "Privacy Policy (KVKK)",
+    },
+    // KVKK Page
+    kvkk: {
+      backToHome: "Back to Home",
+      title: "Privacy Policy (KVKK)",
+      subtitle: "Privacy Notice under the Personal Data Protection Law",
+      lastUpdate: "Last updated: March 2026",
+      backButton: "Back to Home",
     },
     // Service Detail Page
     serviceDetail: {

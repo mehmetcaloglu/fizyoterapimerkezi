@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   title: "Fizyoterapist Kadir Temel | Antalya Fizyoterapi",
   description: "Antalya Muratpaşa'da IKOMT, Schroth Method Skolyoz Rehabilitasyonu ve kaliteli fizyoterapi hizmeti. Bilimsel temelli, modern ve efektif tedavi yaklaşımı.",
   keywords: ["fizyoterapi", "antalya", "muratpaşa", "rehabilitasyon", "manuel terapi", "IKOMT", "schroth", "skolyoz"],
+  icons: {
+    icon: "/logo-icon.svg",
+    shortcut: "/logo-icon.svg",
+    apple: "/logo-icon.svg",
+  },
 };
 
 export default function RootLayout({
