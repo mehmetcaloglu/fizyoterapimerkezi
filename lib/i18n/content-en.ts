@@ -252,9 +252,9 @@ export const visionMissionEn = {
 export const specialInterestAreasEn = [
   "Shoulder rehabilitation",
   "Knee rehabilitation",
+  "Chronic pain treatment",
   "Spinal health (scoliosis, kyphosis)",
   "Hand and wrist rehabilitation",
-  "Chronic pain treatment",
 ];
 
 export const therapyStepsEn = [

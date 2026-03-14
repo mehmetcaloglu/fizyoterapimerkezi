@@ -419,7 +419,7 @@ export const teamMembers: TeamMember[] = [
     title: "Kurucu Fizyoterapist",
     specialization: "IKOMT Advanced Practitioner · ISST Schroth Therapist",
     image: "/kadirtemel.webp",
-    bio: "Süleyman Demirel Üniversitesi Fizik Tedavi ve Rehabilitasyon Bölümü'nden 2014 yılında mezun olmuştur. Üniversite eğitimi sırasında Erasmus+ öğrenci değişim programıyla gittiği Polonya'nın Opole Politechnika Opolska Üniversitesi'nde farklı bir mesleki bakış açısı kazanmıştır. Ortopedik, nörolojik, spor yaralanmaları ve pediatrik yaklaşımlarla ilgili Türkiye'nin önde gelen birçok kurumunda staj yaparak kendini geliştirmiştir. 2023 yılında Antalya Muratpaşa'da kurduğu klinikte bilimsel temelli fizyoterapi hizmeti sunmaya devam etmektedir.",
+    bio: "Bilimsel temelli fizyoterapi yaklaşımıyla özellikle omurga sağlığı ve kronik ağrı tedavisi alanlarında çalışan Fzt. Abdülkadir Temel, uluslararası eğitimler ve ileri manuel terapi yaklaşımlarını klinik pratiğinde birleştirmektedir.\n\nFzt. Abdülkadir Temel, 2014 yılında Süleyman Demirel Üniversitesi Fizik Tedavi ve Rehabilitasyon Bölümü'nden mezun olmuştur. Üniversite eğitimi sırasında Erasmus+ öğrenci değişim programı kapsamında Polonya'da bulunan Opole University of Technology'de eğitim alarak uluslararası bir mesleki bakış açısı kazanmıştır.\n\nEğitim sürecinde ortopedik, nörolojik, spor yaralanmaları ve pediatrik rehabilitasyon alanlarında Türkiye'nin çeşitli sağlık kurumlarında staj yaparak klinik deneyimini geliştirmiştir. 2017 yılında Dumlupınar Üniversitesi'nde yüksek lisans eğitimine başlamıştır.\n\n2014–2022 yılları arasında farklı tıp merkezlerinde ortopedik rehabilitasyon, nörolojik rehabilitasyon, pediatrik rehabilitasyon, el cerrahisi sonrası rehabilitasyon ve omurga sağlığı alanlarında aktif olarak çalışmıştır.\n\n2019–2025 yılları arasında IKOMT Institute tarafından düzenlenen eğitim programlarını tamamlayarak ilk olarak IKOMT NMST Practitioner, ardından Türkiye'de ilk kez düzenlenen ileri seviye klinik uzmanlık programını tamamlayarak IKOMT Advanced Practitioner ünvanını almıştır.\n\nOmurga sağlığı ve skolyoz rehabilitasyonu alanında ise dünyada yaygın olarak kullanılan üç boyutlu düzeltici egzersiz yaklaşımı olan ISST Schroth Method eğitimini tamamlayarak ISST Schroth Therapist ünvanını kazanmıştır.\n\n2023 yılında Antalya Muratpaşa Lara'da kurduğu Fizikend Klinik'te bilimsel temelli fizyoterapi yaklaşımıyla özellikle omurga sağlığı, kronik ağrı tedavisi ve manuel terapi alanlarında hizmet vermeye devam etmektedir. Evli ve bir çocuk babasıdır.",
   },
 ];
 
@@ -518,9 +518,9 @@ export const visionMission: VisionMission = {
 export const specialInterestAreas: string[] = [
   "Omuz rehabilitasyonu",
   "Diz rehabilitasyonu",
+  "Kronik ağrı tedavisi",
   "Omurga sağlığı (skolyoz, kifoz)",
   "El, el bileği rehabilitasyonu",
-  "Kronik ağrı tedavisi",
 ];
 
 // Hakkımızda Bölümü

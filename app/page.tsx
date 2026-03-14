@@ -750,32 +750,7 @@ export default function LandingPage() {
                 ))}
               </div>
 
-              {/* Fzt. Kadir Temel Hakkında Kutusu */}
-              <div className="mt-8 p-6 rounded-2xl bg-white dark:bg-secondary-blue/40 border border-gray-100 dark:border-white/5 shadow-sm w-full">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-2 h-2 rounded-full bg-primary-orange" />
-                  <span className="text-xs font-bold text-primary-orange uppercase tracking-widest">{t.about.clinicLabel}</span>
-                </div>
-                <p className="text-secondary-blue-muted dark:text-gray-300 text-sm leading-relaxed">
-                  {aboutSection.clinicDescription}
-                </p>
-              </div>
 
-              {/* Özel İlgi Alanları */}
-              <div className="mt-8 w-full">
-                <h4 className="text-lg font-display font-bold text-secondary-blue dark:text-white mb-4 flex items-center gap-3">
-                  <span className="w-8 h-0.5 bg-primary-orange" />
-                  {t.about.specialInterests}
-                </h4>
-                <ul className="space-y-2">
-                  {specialInterests.map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-secondary-blue-muted dark:text-gray-300 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-primary-orange flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </motion.div>
 
             {/* Sağ: Biyografi + Kariyer Zaman Çizelgesi */}
@@ -786,9 +761,11 @@ export default function LandingPage() {
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               {/* Biyografi */}
-              <p className="text-secondary-blue-muted dark:text-gray-300 leading-relaxed mb-10 text-base">
-                {teamMember.bio}
-              </p>
+              <div className="text-secondary-blue-muted dark:text-gray-300 leading-relaxed mb-10 text-base space-y-4">
+                {teamMember.bio.split("\n\n").map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
 
               {/* Kariyer Zaman Çizelgesi */}
               <h4 className="text-lg font-display font-bold text-secondary-blue dark:text-white mb-6 flex items-center gap-3">
@@ -855,6 +832,32 @@ export default function LandingPage() {
               </div>
             </motion.div>
           </div>
+
+          {/* Özel İlgi Alanları — Alt Bölüm */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-16 text-center"
+          >
+            <h4 className="text-lg font-display font-bold text-secondary-blue dark:text-white mb-6 flex items-center justify-center gap-3">
+              <span className="w-8 h-0.5 bg-primary-orange" />
+              {t.about.specialInterests}
+              <span className="w-8 h-0.5 bg-primary-orange" />
+            </h4>
+            <div className="flex flex-wrap justify-center gap-3">
+              {specialInterests.map((item, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-secondary-blue/40 border border-gray-200 dark:border-white/10 text-secondary-blue dark:text-white text-sm font-medium shadow-sm hover:border-primary-orange/40 hover:shadow-md transition-all duration-300"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-primary-orange flex-shrink-0" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
