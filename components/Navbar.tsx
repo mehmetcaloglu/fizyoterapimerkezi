@@ -46,16 +46,12 @@ export default function Navbar() {
         <div className="container mx-auto px-0 xl:px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo - flex-shrink-0 ile sıkışmada üstüne çıkmasını önle */}
-            <Link href="/#hero" onClick={(e) => handleLinkClick(e, "#hero")} className="flex items-center gap-2 group flex-shrink-0 min-w-0">
+            <Link href="/#hero" onClick={(e) => handleLinkClick(e, "#hero")} className="flex items-center group flex-shrink-0 min-w-0">
               <img
-                src="/logo-icon.svg"
-                alt=""
-                className="h-10 xl:h-11 w-auto transition-opacity duration-300 group-hover:opacity-80 flex-shrink-0"
+                src="/logo_final_cropped.svg"
+                alt={siteConfig.name}
+                className="h-12 xl:h-20 w-auto transition-opacity duration-300 group-hover:opacity-80 flex-shrink-0"
               />
-              <span className="text-lg xl:text-xl font-black tracking-tight leading-none text-secondary-blue dark:text-white truncate">
-                <span className="hidden sm:inline">{siteConfig.name}</span>
-                <span className="sm:hidden">{siteConfig.nameShort}</span>
-              </span>
             </Link>
 
             {/* Desktop Nav - 1024-1525 arası kompakt (gap-4), 1526+ rahat (gap-6) */}
@@ -151,11 +147,8 @@ export default function Navbar() {
                 </button>
 
                 <div className="mb-8">
-                  <div className="flex items-center gap-2 mb-2">
-                    <img src="/logo-icon.svg" alt="" className="h-12 w-auto" />
-                    <span className="text-2xl font-black tracking-tight leading-none text-secondary-blue dark:text-white">
-                      {siteConfig.name}
-                    </span>
+                  <div className="flex items-center mb-2">
+                    <img src="/logo-name.svg" alt={siteConfig.name} className="h-12 w-auto" />
                   </div>
                   <div className="text-sm text-primary-orange font-semibold">{t.hero.tagline}</div>
                 </div>
