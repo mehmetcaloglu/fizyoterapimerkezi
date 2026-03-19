@@ -125,38 +125,44 @@ function GallerySection({ locale }: { locale: string }) {
           ))}
         </div>
 
-        {/* Masonry Grid */}
+        {/* Masonry Grid - dik/yatay karışık fotoğraflar için */}
         <motion.div
           layout
-          className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3"
+          className="columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
         >
           {filtered.map((img, index) => (
             <motion.div
               key={img.id}
               layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.5, delay: index * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={() => setLightbox(img.id)}
-              className="relative group cursor-pointer break-inside-avoid rounded-2xl overflow-hidden border border-gray-100 dark:border-white/5"
+              className="relative group cursor-pointer break-inside-avoid mb-4"
             >
-              <Image
-                src={img.src}
-                alt={isEn ? img.alt_en : img.alt}
-                width={400}
-                height={300}
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-secondary-blue/0 group-hover:bg-secondary-blue/50 transition-all duration-300 flex items-center justify-center">
-                <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
-              </div>
-              {/* Alt etiket */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-white text-xs font-medium truncate">
-                  {isEn ? img.alt_en : img.alt}
-                </p>
+              <div className="relative rounded-2xl overflow-hidden shadow-lg shadow-black/5 dark:shadow-black/20 border border-gray-100/80 dark:border-white/5 bg-gray-100 dark:bg-white/5 ring-2 ring-transparent group-hover:ring-primary-orange/30 transition-all duration-500">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={img.src}
+                  alt={isEn ? img.alt_en : img.alt}
+                  width={img.width}
+                  height={img.height}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto block transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end justify-center">
+                  <div className="p-4 w-full flex items-center justify-between gap-2">
+                    <p className="text-white text-sm font-medium truncate drop-shadow-md">
+                      {isEn ? img.alt_en : img.alt}
+                    </p>
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-primary-orange transition-colors duration-300">
+                      <ZoomIn className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -171,33 +177,35 @@ function GallerySection({ locale }: { locale: string }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightbox(null)}
-            className="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[100] flex items-center justify-center p-4 md:p-8"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl"
+              className="relative max-w-5xl w-full max-h-[90vh] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10"
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={activeLightboxImg.src}
                 alt={isEn ? activeLightboxImg.alt_en : activeLightboxImg.alt}
-                width={1200}
-                height={800}
-                className="w-full object-cover"
+                width={activeLightboxImg.width}
+                height={activeLightboxImg.height}
+                className="w-full h-auto max-h-[85vh] object-contain"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-5">
-                <p className="text-white font-medium">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-5">
+                <p className="text-white font-medium text-lg">
                   {isEn ? activeLightboxImg.alt_en : activeLightboxImg.alt}
                 </p>
               </div>
               <button
                 onClick={() => setLightbox(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 flex items-center justify-center transition-colors duration-200"
+                aria-label="Kapat"
+                className="absolute top-4 right-4 w-12 h-12 rounded-full bg-black/60 hover:bg-primary-orange flex items-center justify-center transition-all duration-300"
               >
-                <X className="w-5 h-5 text-white" />
+                <X className="w-6 h-6 text-white" />
               </button>
             </motion.div>
           </motion.div>
@@ -328,13 +336,15 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background Image - Next.js Image ile WebP/AVIF optimize */}
         <div className="absolute inset-0 z-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url(/hero.png)`,
-            }}
+          <Image
+            src="/hero.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-secondary-blue/95 via-secondary-blue/85 to-transparent" />
         </div>
@@ -530,8 +540,8 @@ export default function LandingPage() {
                         <div className="w-12 h-12 rounded-xl bg-primary-orange flex items-center justify-center shadow-md shadow-primary-orange/30 flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                           <IconComponent className="w-6 h-6 text-white" />
                         </div>
-                        <span className="text-5xl font-display font-black text-primary-orange/25 dark:text-primary-orange/30 leading-none select-none group-hover:text-primary-orange/50 transition-colors duration-300">
-                          {String(step.step).padStart(2, "0")}
+                        <span className="text-5xl font-display font-black  leading-none select-none group-hover:text-primary-orange/50 transition-colors duration-300" style={{ color: "rgb(215 92 0)" }}> 
+                          {step.step}
                         </span>
                       </div>
 

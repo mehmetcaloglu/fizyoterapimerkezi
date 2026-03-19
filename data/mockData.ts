@@ -65,7 +65,7 @@ export interface ContactInfo {
 export const siteConfig = {
   name: "Fizyoterapist Kadir TEMEL",
   nameShort: "Fzt. Kadir TEMEL",
-  tagline: "Fizyoterapi ve Danışmanlık Merkezi",
+  tagline: "Fizyoterapi Merkezi",
   description: "Antalya Muratpaşa'da IKOMT, Schroth Method Skolyoz Rehabilitasyonu ve kaliteli fizyoterapi hizmeti. Bilimsel temelli, modern ve efektif tedavi yaklaşımı.",
 };
 
@@ -448,7 +448,7 @@ export const careerSteps: CareerStep[] = [
   {
     year: "2023",
     title: "Klinik Kuruluşu",
-    description: "Antalya Muratpaşa'da Fizyoterapi ve Danışmanlık Merkezi'ni kurdu.",
+    description: "Antalya Muratpaşa'da Fizyoterapi Merkezi'ni kurdu.",
   },
   {
     year: "2025",
@@ -562,82 +562,38 @@ export interface GalleryImage {
   category: "klinik" | "terapi" | "ekipman" | "etkinlik";
   category_en: "clinic" | "therapy" | "equipment" | "event";
   featured: boolean;
+  width: number;
+  height: number;
 }
 
-export const galleryImages: GalleryImage[] = [
-  {
-    id: "g1",
-    src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop",
-    alt: "Klinik — Resepsiyon Alanı",
-    alt_en: "Clinic — Reception Area",
-    category: "klinik",
-    category_en: "clinic",
-    featured: true,
-  },
-  {
-    id: "g2",
-    src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&auto=format&fit=crop",
-    alt: "Manuel Terapi Uygulaması",
-    alt_en: "Manual Therapy Session",
-    category: "terapi",
-    category_en: "therapy",
-    featured: true,
-  },
-  {
-    id: "g3",
-    src: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&auto=format&fit=crop",
-    alt: "Reformer Pilates Ekipmanı",
-    alt_en: "Reformer Pilates Equipment",
-    category: "ekipman",
-    category_en: "equipment",
-    featured: true,
-  },
-  {
-    id: "g4",
-    src: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&auto=format&fit=crop",
-    alt: "Tedavi Seansı",
-    alt_en: "Treatment Session",
-    category: "terapi",
-    category_en: "therapy",
-    featured: false,
-  },
-  {
-    id: "g5",
-    src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&auto=format&fit=crop",
-    alt: "Klinik Tedavi Odası",
-    alt_en: "Clinic Treatment Room",
-    category: "klinik",
-    category_en: "clinic",
-    featured: false,
-  },
-  {
-    id: "g6",
-    src: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&auto=format&fit=crop",
-    alt: "Sportif Rehabilitasyon",
-    alt_en: "Sports Rehabilitation",
-    category: "terapi",
-    category_en: "therapy",
-    featured: false,
-  },
-  {
-    id: "g7",
-    src: "https://images.unsplash.com/photo-1593476087123-36d1de271f08?w=800&auto=format&fit=crop",
-    alt: "Fizyoterapi Ekipmanları",
-    alt_en: "Physiotherapy Equipment",
-    category: "ekipman",
-    category_en: "equipment",
-    featured: false,
-  },
-  {
-    id: "g8",
-    src: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=800&auto=format&fit=crop",
-    alt: "Egzersiz ve Danışmanlık",
-    alt_en: "Exercise & Consultation",
-    category: "terapi",
-    category_en: "therapy",
-    featured: true,
-  },
+// Dik/yatay karışık dağılım için sıra. width/height CLS önleme için (P=portrait 300x400, L=landscape 400x300)
+const _galleryRaw: Omit<GalleryImage, "id">[] = [
+  { src: "/images/gallery/001.jpeg", alt: "Fizyoterapi Merkezi — Klinik", alt_en: "Physiotherapy Center — Clinic", category: "klinik", category_en: "clinic", featured: true, width: 300, height: 400 },
+  { src: "/images/gallery/002.jpeg", alt: "Tedavi Alanı", alt_en: "Treatment Area", category: "klinik", category_en: "clinic", featured: true, width: 300, height: 400 },
+  { src: "/images/gallery/003.jpeg", alt: "Manuel Terapi", alt_en: "Manual Therapy", category: "terapi", category_en: "therapy", featured: true, width: 300, height: 400 },
+  { src: "/images/gallery/004.jpeg", alt: "Klinik İç Mekan", alt_en: "Clinic Interior", category: "klinik", category_en: "clinic", featured: false, width: 300, height: 400 },
+  { src: "/images/gallery/005.jpeg", alt: "Tedavi Seansı", alt_en: "Treatment Session", category: "terapi", category_en: "therapy", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/006.jpeg", alt: "Rehabilitasyon", alt_en: "Rehabilitation", category: "terapi", category_en: "therapy", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/007.jpeg", alt: "Fizyoterapi Ekipmanları", alt_en: "Physiotherapy Equipment", category: "ekipman", category_en: "equipment", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/008.jpeg", alt: "Tedavi Odası", alt_en: "Treatment Room", category: "klinik", category_en: "clinic", featured: true, width: 400, height: 300 },
+  { src: "/images/gallery/009.jpeg", alt: "Egzersiz Alanı", alt_en: "Exercise Area", category: "ekipman", category_en: "equipment", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/010.jpeg", alt: "Klinik Görünümü", alt_en: "Clinic View", category: "klinik", category_en: "clinic", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/011.jpeg", alt: "Terapi Uygulaması", alt_en: "Therapy Application", category: "terapi", category_en: "therapy", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/012.jpeg", alt: "Fizyoterapi Merkezi", alt_en: "Physiotherapy Center", category: "klinik", category_en: "clinic", featured: true, width: 400, height: 300 },
+  { src: "/images/gallery/013.jpeg", alt: "Tedavi Ekipmanı", alt_en: "Treatment Equipment", category: "ekipman", category_en: "equipment", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/014.jpeg", alt: "Rehabilitasyon Alanı", alt_en: "Rehabilitation Area", category: "terapi", category_en: "therapy", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/015.jpeg", alt: "Klinik Ortamı", alt_en: "Clinic Environment", category: "klinik", category_en: "clinic", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/016.jpeg", alt: "Terapi Seansı", alt_en: "Therapy Session", category: "terapi", category_en: "therapy", featured: false, width: 400, height: 300 },
+  { src: "/images/gallery/017.jpeg", alt: "Fizyoterapi Merkezi — Genel Görünüm", alt_en: "Physiotherapy Center — Overview", category: "klinik", category_en: "clinic", featured: true, width: 400, height: 300 },
 ];
+
+// İndeksler: 0-3 dik, 4-7 yatay (ekran görüntüsüne göre). Homojen dağılım için karıştırılmış sıra.
+const HOMOGENEOUS_ORDER = [0, 4, 1, 5, 2, 6, 3, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+export const galleryImages: GalleryImage[] = HOMOGENEOUS_ORDER.map((idx, i) => ({
+  ..._galleryRaw[idx],
+  id: `g${i + 1}`,
+}));
 
 export const gallerySectionData = {
   title: "Galeri",

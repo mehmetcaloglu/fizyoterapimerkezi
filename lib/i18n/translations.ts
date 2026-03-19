@@ -16,7 +16,7 @@ export const translations = {
     },
     // Hero
     hero: {
-      tagline: "Fizyoterapi ve Danışmanlık Merkezi",
+      tagline: "Fizyoterapi Merkezi",
       title: "Harekete Özgürlük Kat",
       subtitle:
         "Bilimsel temelli, modern ve efektif fizyoterapi yaklaşımı ile kas-iskelet ve sinir sistemi problemlerinize çözüm sunuyoruz.",
@@ -125,7 +125,7 @@ export const translations = {
     },
     // Hero
     hero: {
-      tagline: "Physiotherapy & Consultancy Centre",
+      tagline: "Physiotherapy Centre",
       title: "Reclaim Your Freedom of Movement",
       subtitle:
         "Evidence-based, modern and effective physiotherapy for musculoskeletal and nervous system conditions.",

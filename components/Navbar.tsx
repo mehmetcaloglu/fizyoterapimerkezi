@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, MessageCircle, Instagram } from "lucide-react";
 import { siteConfig, contactInfo } from "@/data/mockData";
 import { useLanguage } from "@/contexts/LanguageContext";
+import LogoName from "@/components/LogoName";
 
 const navHrefs = ["#hero", "#services", "#terapi-sureci", "#about", "#certifications", "#galeri", "#contact"];
 
@@ -47,10 +48,9 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo - flex-shrink-0 ile sıkışmada üstüne çıkmasını önle */}
             <Link href="/#hero" onClick={(e) => handleLinkClick(e, "#hero")} className="flex items-center group flex-shrink-0 min-w-0">
-              <img
-                src="/logo_final_cropped.svg"
-                alt={siteConfig.name}
+              <LogoName
                 className="h-12 xl:h-20 w-auto transition-opacity duration-300 group-hover:opacity-80 flex-shrink-0"
+                aria-label={siteConfig.name}
               />
             </Link>
 
@@ -148,7 +148,7 @@ export default function Navbar() {
 
                 <div className="mb-8">
                   <div className="flex items-center mb-2">
-                    <img src="/logo-name.svg" alt={siteConfig.name} className="h-12 w-auto" />
+                    <LogoName className="h-12 w-auto" aria-label={siteConfig.name} />
                   </div>
                   <div className="text-sm text-primary-orange font-semibold">{t.hero.tagline}</div>
                 </div>

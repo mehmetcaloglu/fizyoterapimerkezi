@@ -49,12 +49,12 @@ export default function KVKKPage() {
             </h2>
             <p className="text-secondary-blue-muted dark:text-gray-300 leading-relaxed">
               6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, kişisel verileriniz;
-              veri sorumlusu sıfatıyla <strong className="text-secondary-blue dark:text-white">Fzt. Kadir Temel / Fizyoterapi ve Danışmanlık Merkezi</strong>
+              veri sorumlusu sıfatıyla <strong className="text-secondary-blue dark:text-white">Fzt. Kadir Temel / Fizyoterapi Merkezi</strong>
               tarafından aşağıda açıklanan kapsamda işlenebilecektir.
             </p>
             <div className="mt-4 p-5 rounded-xl bg-gray-50 dark:bg-secondary-blue/30 border border-gray-100 dark:border-white/10">
               <p className="text-sm text-secondary-blue-muted dark:text-gray-300">
-                <strong className="text-secondary-blue dark:text-white">Veri Sorumlusu:</strong> Fzt. Kadir Temel / Fizyoterapi ve Danışmanlık Merkezi<br />
+                <strong className="text-secondary-blue dark:text-white">Veri Sorumlusu:</strong> Fzt. Kadir Temel / Fizyoterapi Merkezi<br />
                 <strong className="text-secondary-blue dark:text-white">Adres:</strong> {contactInfo.address}, {contactInfo.city}<br />
                 <strong className="text-secondary-blue dark:text-white">E-posta:</strong> {contactInfo.email}<br />
                 <strong className="text-secondary-blue dark:text-white">Telefon:</strong> {contactInfo.phone}

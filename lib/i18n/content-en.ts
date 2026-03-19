@@ -171,7 +171,7 @@ export const certificationsEn = [
 ];
 
 export const heroContentEn = {
-  tagline: "Physiotherapy & Consultancy Centre",
+  tagline: "Physiotherapy Centre",
   title: "Reclaim Your Freedom of Movement",
   subtitle:
     "Evidence-based, modern and effective physiotherapy for musculoskeletal and nervous system conditions.",
