@@ -83,6 +83,7 @@ export const translations = {
       openInMaps: "Google Maps'te Aç",
       rights: "Tüm hakları saklıdır.",
       kvkk: "KVKK Aydınlatma Metni",
+      developedBy: "Developed by",
     },
     // KVKK Page
     kvkk: {
@@ -192,6 +193,7 @@ export const translations = {
       openInMaps: "Open in Google Maps",
       rights: "All rights reserved.",
       kvkk: "Privacy Policy (KVKK)",
+      developedBy: "Developed by",
     },
     // KVKK Page
     kvkk: {

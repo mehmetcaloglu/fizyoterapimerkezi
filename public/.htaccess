@@ -1,0 +1,21 @@
+# Statik Next export: /hizmetler/ikomt -> /hizmetler/ikomt.html
+DirectoryIndex index.html
+Options -MultiViews
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Eski domainden gelen tum istekleri ana domaine yonlendir
+  RewriteCond %{HTTP_HOST} ^(www\.)?fizikend\.com$ [NC]
+  RewriteRule ^ https://kadirtemel.com.tr/ [R=301,L]
+
+  # Mevcut dosya/klasor varsa dokunma
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Uzantisiz istek icin ayni isimli .html dosyasina yonlendir
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
+</IfModule>

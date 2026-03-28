@@ -8,8 +8,7 @@ import { Menu, X, Phone, MessageCircle, Instagram } from "lucide-react";
 import { siteConfig, contactInfo } from "@/data/mockData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LogoName from "@/components/LogoName";
-
-const navHrefs = ["#hero", "#services", "#terapi-sureci", "#about", "#certifications", "#galeri", "#contact"];
+import { HOME_SECTION_HASHES, homeHref } from "@/lib/homeSections";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,7 +17,7 @@ export default function Navbar() {
   const { t } = useLanguage();
 
   const navLabels = [t.nav.home, t.nav.services, t.nav.therapyProcess, t.nav.about, t.nav.certifications, t.nav.gallery, t.nav.contact];
-  const navLinks = navHrefs.map((href, i) => ({ href, label: navLabels[i] }));
+  const navLinks = HOME_SECTION_HASHES.map((hash, i) => ({ hash, href: homeHref(hash), label: navLabels[i] }));
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -26,12 +25,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#") && pathname === "/") {
+  const scrollToHash = (hash: string) => {
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    window.history.pushState(null, "", hash);
+  };
+
+  const onSectionNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    setIsMobileMenuOpen(false);
+    if (pathname === "/") {
       e.preventDefault();
-      setIsMobileMenuOpen(false);
-      const element = document.querySelector(href);
-      if (element) element.scrollIntoView({ behavior: "smooth" });
+      scrollToHash(hash);
+    }
+  };
+
+  const onLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setIsMobileMenuOpen(false);
+    if (pathname === "/") {
+      e.preventDefault();
+      scrollToHash("#hero");
     }
   };
 
@@ -46,21 +58,19 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-0 xl:px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo - flex-shrink-0 ile sıkışmada üstüne çıkmasını önle */}
-            <Link href="/#hero" onClick={(e) => handleLinkClick(e, "#hero")} className="flex items-center group flex-shrink-0 min-w-0">
+            <Link href={homeHref("#hero")} onClick={onLogoClick} className="flex items-center group flex-shrink-0 min-w-0">
               <LogoName
                 className="h-12 xl:h-20 w-auto transition-opacity duration-300 group-hover:opacity-80 flex-shrink-0"
                 aria-label={siteConfig.name}
               />
             </Link>
 
-            {/* Desktop Nav - 1024-1525 arası kompakt (gap-4), 1526+ rahat (gap-6) */}
             <div className="hidden lg:flex items-center gap-4 nav:gap-6 2xl:gap-8 flex-shrink min-w-0">
               {navLinks.map((link) => (
                 <Link
-                  key={link.href}
-                  href={link.href.startsWith("#") ? `/${link.href}` : link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
+                  key={link.hash}
+                  href={link.href}
+                  onClick={(e) => onSectionNavClick(e, link.hash)}
                   className="text-secondary-blue dark:text-white hover:text-primary-orange dark:hover:text-primary-orange transition-colors duration-300 font-semibold text-sm nav:text-base whitespace-nowrap"
                 >
                   {link.label}
@@ -68,7 +78,6 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Desktop CTA - lg'de daha kompakt */}
             <div className="hidden lg:flex items-center gap-2 xl:gap-3 flex-shrink-0">
               <motion.a
                 href={contactInfo.instagram}
@@ -105,7 +114,6 @@ export default function Navbar() {
               </motion.a>
             </div>
 
-            {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 rounded-lg bg-white/10 dark:bg-white/5 backdrop-blur-sm"
@@ -120,7 +128,6 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -156,14 +163,14 @@ export default function Navbar() {
                 <div className="space-y-6 mb-12">
                   {navLinks.map((link, index) => (
                     <motion.div
-                      key={link.href}
+                      key={link.hash}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                     >
                       <Link
-                        href={link.href.startsWith("#") ? `/${link.href}` : link.href}
-                        onClick={(e) => handleLinkClick(e, link.href)}
+                        href={link.href}
+                        onClick={(e) => onSectionNavClick(e, link.hash)}
                         className="block text-2xl font-semibold text-secondary-blue dark:text-white hover:text-primary-orange dark:hover:text-primary-orange transition-colors duration-300"
                       >
                         {link.label}

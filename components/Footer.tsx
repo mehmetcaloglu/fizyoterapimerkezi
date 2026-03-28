@@ -7,21 +7,20 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Instagram, MessageCircle } from "lucide-react";
 import { contactInfo, siteConfig } from "@/data/mockData";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-const navHrefs = ["#hero", "#services", "#terapi-sureci", "#about", "#certifications", "#galeri", "#contact"];
+import { HOME_SECTION_HASHES, homeHref } from "@/lib/homeSections";
 
 export default function Footer() {
   const { locale, t } = useLanguage();
   const pathname = usePathname();
 
   const navLabels = [t.nav.home, t.nav.services, t.nav.therapyProcess, t.nav.about, t.nav.certifications, t.nav.gallery, t.nav.contact];
-  const navLinks = navHrefs.map((href, i) => ({ href, label: navLabels[i] }));
-  const isHomePage = pathname === "/";
+  const navLinks = HOME_SECTION_HASHES.map((hash, i) => ({ hash, href: homeHref(hash), label: navLabels[i] }));
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const onSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", hash);
     }
   };
 
@@ -92,28 +91,15 @@ export default function Footer() {
             <h3 className="font-display text-xl font-bold mb-6">{t.footer.quickLinks}</h3>
             <ul className="space-y-3">
               {navLinks.map((link) => (
-                <li key={link.href}>
-                  {isHomePage ? (
-                    <a
-                      href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(link.href);
-                      }}
-                      className="text-gray-300 hover:text-primary-orange transition-colors duration-300 inline-flex items-center gap-2 group"
-                    >
-                      <span className="w-0 group-hover:w-2 h-0.5 bg-primary-orange transition-all duration-300" />
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      href={`/${link.href}`}
-                      className="text-gray-300 hover:text-primary-orange transition-colors duration-300 inline-flex items-center gap-2 group"
-                    >
-                      <span className="w-0 group-hover:w-2 h-0.5 bg-primary-orange transition-all duration-300" />
-                      {link.label}
-                    </Link>
-                  )}
+                <li key={link.hash}>
+                  <Link
+                    href={link.href}
+                    onClick={(e) => onSectionClick(e, link.hash)}
+                    className="text-gray-300 hover:text-primary-orange transition-colors duration-300 inline-flex items-center gap-2 group"
+                  >
+                    <span className="w-0 group-hover:w-2 h-0.5 bg-primary-orange transition-all duration-300" />
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -246,10 +232,21 @@ export default function Footer() {
             <p className="text-gray-400 text-sm text-center md:text-left">
               © {new Date().getFullYear()} {siteConfig.name}. {t.footer.rights}
             </p>
-            <div className="flex gap-6 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
               <a href="/kvkk" className="text-gray-400 hover:text-primary-orange transition-colors duration-300">
                 {t.footer.kvkk}
               </a>
+              <p className="text-gray-400">
+                {t.footer.developedBy}{" "}
+                <a
+                  href="https://linkedin.com/in/mehmetcaloglu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-primary-orange transition-colors duration-300"
+                >
+                  Mehmet Çaloğlu
+                </a>
+              </p>
             </div>
           </div>
         </div>
